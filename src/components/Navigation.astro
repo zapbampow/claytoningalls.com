@@ -1,30 +1,32 @@
 ---
-import { Icon } from 'astro-icon/components'
-import VisibleGrid from './VisibleGrid.astro'
+import { Icon } from "astro-icon/components";
+import VisibleGrid from "./VisibleGrid.astro";
 ---
 
-
 <ul>
-    <li><a class="home" href="/"><Icon name={`tabler:home`} stroke-linecap='butt' /></a></li>
-    <li><a href="/about/">About</a></li>
-    <li><a href="/blog/">Blog</a></li>
-    <li><a href="/tags/">Tags</a></li>
-    
-    <div class="top-left-grid">
-        <VisibleGrid columns={25} rows={50}  />
-    </div>
-    <div class="top-right-grid">
-        <VisibleGrid columns={40} rows={20} maskGradient="radial-gradient(circle, black 5%, transparent)" />
-    </div>
+  <li>
+    <a class="home" href="/"
+      ><Icon name={`tabler:home`} stroke-linecap="butt" /></a
+    >
+  </li>
+  <li><a href="/about/">About</a></li>
+  <li><a href="/blog/">Blog</a></li>
+  <li><a href="/tags/">Tags</a></li>
 </ul>
 
+<div class="top-left-grid">
+  <VisibleGrid columns={25} rows={50} />
+</div>
+<div class="top-right-grid">
+  <VisibleGrid
+    columns={40}
+    rows={20}
+    maskGradient="radial-gradient(circle, black 5%, transparent)"
+  />
+</div>
 
 <style>
-ul {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+  ul {
     display: flex;
     gap: 1rem;
     padding: 1rem;
@@ -32,57 +34,58 @@ ul {
     padding: 1rem;
     margin: 0 auto;
     max-width: 1280px;
-    font-family: ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, Consolas, 'DejaVu Sans Mono', monospace;
+    font-family: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo,
+      Consolas, "DejaVu Sans Mono", monospace;
     z-index: 100;
-}
+  }
 
-li {
+  li {
     padding: 0;
-}
+  }
 
-li:first-child {
+  li:first-child {
     margin-inline-end: auto;
-}
+  }
 
-li a {
+  li a {
     text-decoration: none;
     color: inherit;
-}
-li a:not(.home) {
+  }
+  li a:not(.home) {
     padding: 0 1rem;
-}
+  }
 
-.top-right-grid {
+  .top-right-grid {
     position: absolute;
     top: -275px;
     right: -300px;
     z-index: -1;
-}
-.top-left-grid {
+  }
+  .top-left-grid {
     position: absolute;
     top: -250px;
     left: -360px;
     z-index: -1;
-}
-@media screen and (min-width: 1441px) {
+  }
+  @media screen and (min-width: 1441px) {
     ul {
-        max-width: 1440px;
+      max-width: 1440px;
     }
     .top-left-grid {
-        top: -400px;
-        left: -27%;
-        opacity: 0.8;
+      top: -400px;
+      left: -27%;
+      opacity: 0.8;
     }
     .top-right-grid {
-        right: -27%;
+      right: -27%;
     }
-}
-@media screen and (max-width: 1279px) {
+  }
+  @media screen and (max-width: 1279px) {
     .top-left-grid {
-        top: -700px
+      top: -700px;
     }
     .top-right-grid {
-        top: -250px
+      top: -250px;
     }
-}
+  }
 </style>
