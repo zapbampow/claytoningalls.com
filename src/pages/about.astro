@@ -117,7 +117,7 @@ const roles = [
 <FullScreenLayout title="About">
   <div class="container">
     <section class="about-me">
-      <div class="flex flex-col gap-4">
+      <div class="flex flex-col">
         <h1>Clayton Ingalls</h1>
         <h2 class="highlight">Web Developer</h2>
       </div>
@@ -127,93 +127,177 @@ const roles = [
           technologies.
         </p>
         <p>
-          After 6 years in roles where I use React every day, I have a
-          particular interest and expertise in React. I've worked on
-          applications using all the major flavors of React: SPAs, NextJS,
-          Remix, Gatsby, and React Native.
+          I have a particular interest in React having worked with it daily
+          since 2018.
+        </p>
+      </div>
+
+      <nav>
+        <ul>
+          <li>
+            <a href="#origin" class="nav-link active"
+              ><div class="bullet"></div>Origin Story</a
+            >
+          </li>
+          <li>
+            <a href="#roles" class="nav-link"><div class="bullet"></div>Roles</a
+            >
+          </li>
+          <li>
+            <a href="#volunteer" class="nav-link"
+              ><div class="bullet"></div>Volunteer</a
+            >
+          </li>
+          <li>
+            <a href="#projects" class="nav-link"
+              ><div class="bullet"></div>Projects</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </section>
+
+    <section class="history">
+      <div id="origin" class="history-section">
+        <h2>Origin Story</h2>
+        <p>
+          Although I built my first website on Geocities in 1996, it wasn't
+          until after a career in ministry that I decided to pursue a long time
+          dream to truly learn how code.
         </p>
         <p>
-          But I like playing with other options out there. This site is built
-          with Astro so I can play around with other frameworks.
-        </p>
-        <h2 class="mt-4">Origin Story</h2>
-        <p>
-          I built my first website in high school on Geocities while connected
-          to AOL on a 28K modem. After a career in ministry where I also
-          happened to administer and tweak a bunch of Wordpress sites, I decided
-          to pursue a dream to learn how to properly code.
-        </p>
-        <p>
-          Using FreeCodeCamp and other online resources I learned the skills I
-          needed to land my first developer job.
+          Using FreeCodeCamp and other online resources, I learned the skills I
+          needed to land my first developer job and learned that I do indeed
+          love being a developer.
         </p>
         <p>
           My main focus these days is building new features for Flocknote's
           church management software.
         </p>
-        <p>
-          I've learned that I like working closely with a small team of
-          developers. I'm particularly happy when I can have a hand in planning
-          out the full stack solution to a problem and when I can work closely
-          with stakeholders to get the solution right.
-        </p>
       </div>
-    </section>
 
-    <section>
-      <h2>Roles</h2>
-      <ul>
-        {
-          roles.map(({ title, company, date, description, technology }) => (
-            <li>
-              <h3>{title}</h3>
-              <h4>{company}</h4>
-              <p>{date}</p>
-              <ul>
-                {description?.map((desc) => {
-                  if (desc.type === "summary") {
-                    console.log(desc);
-                    return <p>{desc.text}</p>;
-                  }
-                  return <li>{desc.text}</li>;
-                })}
-              </ul>
-              <ul>
-                {technology?.map((tech) => (
-                  <li>{tech}</li>
-                ))}
-              </ul>
-            </li>
-          ))
-        }
-      </ul>
+      <div id="roles" class="history-section">
+        <h2>Roles</h2>
+        <ul>
+          {
+            roles.map(({ title, company, date, description, technology }) => (
+              <li>
+                <h3>{title}</h3>
+                <h4>{company}</h4>
+                <p>{date}</p>
+                <ul>
+                  {description?.map((desc) => {
+                    if (desc.type === "summary") {
+                      console.log(desc);
+                      return <p>{desc.text}</p>;
+                    }
+                    return <li>{desc.text}</li>;
+                  })}
+                </ul>
+                <ul>
+                  {technology?.map((tech) => (
+                    <li>{tech}</li>
+                  ))}
+                </ul>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div id="volunteer" class="history-section">
+        <h2>Volunteer</h2>
+        <p>I've volunteered since 2022 with Refcode.</p>
+      </div>
+
+      <div id="projects" class="history-section">
+        <h2>Projects</h2>
+      </div>
     </section>
   </div>
 
   <style>
     .container {
+      position: relative;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 6rem;
-      max-width: 920px;
+      max-width: 1024px;
       margin: 0 auto;
-      margin-block-start: 10rem;
     }
 
     h1 {
       font-size: 2.5rem;
+      font-weight: 600;
     }
-    h2 {
-      font-size: 1.75rem;
-      position: relative;
-      display: inline-block;
-      padding-inline-end: 3rem;
+
+    p {
+      line-height: 2rem;
     }
 
     .about-me {
+      position: sticky;
+      top: 0;
+      align-self: start;
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      padding-block-start: 10rem;
+
+      h2 {
+        font-size: 1.75rem;
+        position: relative;
+        display: inline-block;
+        padding-inline-end: 3rem;
+      }
+    }
+
+    nav ul {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-block-start: 2.5rem;
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.9rem;
+
+      & .bullet {
+        width: 2rem;
+        height: 0.1rem;
+        background-color: #fff;
+        transition: all 0.3s ease;
+      }
+      &.active {
+        font-weight: 600;
+
+        .bullet {
+          width: 4rem;
+          height: 0.2rem;
+        }
+      }
+    }
+    .nav-link.active {
+      font-weight: 600;
+    }
+
+    .history {
+      padding-block-start: 10rem;
+      padding-block-end: 20rem;
+
+      * + * {
+        margin-block-start: 1em;
+      }
+
+      h2 {
+        font-size: 1.25rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+      }
     }
 
     .highlight::after {
@@ -236,9 +320,41 @@ const roles = [
       }
 
       to {
-        width: 100%;
+        width: 60%;
         background: #ff5d5d;
       }
     }
   </style>
+
+  <script>
+    function handleScroll() {
+      let main = document.querySelector("main");
+      if (!main) return;
+
+      main.addEventListener("scroll", function () {
+        const top = main.scrollTop;
+        const sections: NodeListOf<HTMLElement> =
+          document.querySelectorAll(".history-section");
+        const navLinks = document.querySelectorAll(".nav-link");
+
+        let currentSection = "";
+
+        sections?.forEach((section) => {
+          const sectionTop = section.offsetTop;
+          if (top >= sectionTop - 350) {
+            currentSection = section.getAttribute("id") || "";
+          }
+        });
+
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${currentSection}`) {
+            link.classList.add("active");
+          }
+        });
+      });
+    }
+
+    handleScroll();
+  </script>
 </FullScreenLayout>
