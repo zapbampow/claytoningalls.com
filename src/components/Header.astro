@@ -1,0 +1,30 @@
+---
+import Navigation from "./Navigation.astro";
+---
+
+<header>
+    <nav>
+        <Navigation />
+    </nav>
+</header>
+
+<script>
+    window.addEventListener('scroll', () => {
+        const header = document.querySelector('header');
+        // header?.classList.toggle('sticky', window.scrollY > 100);
+    });
+</script>
+
+
+<style>
+    header {
+        width: 100%;
+    }
+    
+    /* header.sticky {
+        position: sticky;
+        top: 0;
+        left: 0;
+        background: hsla(0 0% 0%);
+    } */
+</style>

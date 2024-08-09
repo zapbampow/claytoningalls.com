@@ -1,0 +1,19 @@
+---
+import { getCollection } from "astro:content";
+import Snippet from "./Snippet.astro";
+
+const snippets = await getCollection("snippets");
+---
+
+<ul class="snippets-list">
+  {snippets.map((snippet) => (
+    <Snippet snippet={snippet} />
+  ))}
+</ul>
+
+<style>
+    .snippets-list {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+</style>

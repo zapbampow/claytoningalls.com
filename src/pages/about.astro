@@ -1,0 +1,244 @@
+---
+import FullScreenLayout from "../layouts/FullScreenLayout.astro";
+
+const skillColor = "red";
+const skillWeight = 600;
+const skillTextCase = "uppercase";
+
+const roles = [
+  {
+    title: "Developer",
+    company: "Flocknote",
+    date: "2022 - Present",
+    descriptions: [
+      {
+        type: "summary",
+        text: "I build complex, but easy to use interfaces, for a leading church management software company.",
+      },
+      {
+        type: "detail",
+        text: "While I work throughout our codebase, I regularly work on payments related features and get tasked with jumping in for emergency situations",
+      },
+    ],
+    technology: [
+      "Javascript",
+      "React",
+      "Styled Components",
+      "Framer Motion",
+      "React Query",
+      "React Hook Form",
+      "React Testing Library",
+    ],
+  },
+  {
+    title: "Senior Application Developer",
+    company: "NCF",
+    date: "2021 - 2022",
+    description: [
+      {
+        type: "detail",
+        text: "Massively improved developer experience by refactoring legacy software to bundle Javascript with webpack, making it easier to develop and navigate the codebase",
+      },
+      {
+        type: "detail",
+        text: "Improved mobile responsiveness fo the primary client facing application",
+      },
+      {
+        type: "detail",
+        text: "Built proof-of-concent app for moving a legacy portal application from jQuery to Remix",
+      },
+    ],
+    technology: ["Javascript, React, Remix, Webpack"],
+  },
+  {
+    title: "Frontend Web Developer",
+    company: "With One Vision",
+    date: "2018 - 2021",
+    description: [
+      {
+        type: "summary",
+        text: "Designed, developed, and maintained church management software.",
+      },
+      {
+        type: "detail",
+        text: "Replaced a legacy application with React and Material UI to manage the writing, approving, and sending of 1,000,000 texts and emails per year.",
+      },
+      {
+        type: "detail",
+        text: "Designed and built an internal staff site for the sharing and requesting of resources with React and Form.io",
+      },
+      {
+        type: "detail",
+        text: "Led the implementation of notifications and universal links in our React Native app.",
+      },
+      {
+        type: "detail",
+        text: "Partnered with a coworker to develop the table structures and API endpoints for a contact management feature in our mobile app using React and Knex.",
+      },
+      {
+        type: "detail",
+        text: "Designed and built a public site for downloading resources for church leaders",
+      },
+      {
+        type: "detail",
+        text: "Oversaw site maintainence, bug fixes, and feature additions for 12stone.com",
+      },
+    ],
+    technology: [
+      "React",
+      "NodeJS",
+      "SQL",
+      "GraphQL",
+      "NextJS",
+      "Docusaurus",
+      "React Native",
+      "Knex",
+      "Material UI",
+      "Tailwind",
+      "Bootstrap",
+      "Bulma",
+    ],
+  },
+  {
+    title: "Teaching Assistant",
+    company: "Georgia Tech Coding Bootcamp",
+    date: " July 2018 - Feb 2019",
+    description: [
+      {
+        type: "summary",
+        text: "Assisted students in learning full stack web development technologies, including HTML, CSS, JavaScript, Node.js, Express, MySQL, and React.",
+      },
+    ],
+    technology: [],
+  },
+];
+---
+
+<FullScreenLayout title="About">
+  <div class="container">
+    <section class="about-me">
+      <div class="flex flex-col gap-4">
+        <h1>Clayton Ingalls</h1>
+        <h2 class="highlight">Web Developer</h2>
+      </div>
+      <div class="flex flex-col gap-4">
+        <p>
+          I build interactive, responsive web applications using modern web
+          technologies.
+        </p>
+        <p>
+          After 6 years in roles where I use React every day, I have a
+          particular interest and expertise in React. I've worked on
+          applications using all the major flavors of React: SPAs, NextJS,
+          Remix, Gatsby, and React Native.
+        </p>
+        <p>
+          But I like playing with other options out there. This site is built
+          with Astro so I can play around with other frameworks.
+        </p>
+        <h2 class="mt-4">Origin Story</h2>
+        <p>
+          I built my first website in high school on Geocities while connected
+          to AOL on a 28K modem. After a career in ministry where I also
+          happened to administer and tweak a bunch of Wordpress sites, I decided
+          to pursue a dream to learn how to properly code.
+        </p>
+        <p>
+          Using FreeCodeCamp and other online resources I learned the skills I
+          needed to land my first developer job.
+        </p>
+        <p>
+          My main focus these days is building new features for Flocknote's
+          church management software.
+        </p>
+        <p>
+          I've learned that I like working closely with a small team of
+          developers. I'm particularly happy when I can have a hand in planning
+          out the full stack solution to a problem and when I can work closely
+          with stakeholders to get the solution right.
+        </p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Roles</h2>
+      <ul>
+        {
+          roles.map(({ title, company, date, description, technology }) => (
+            <li>
+              <h3>{title}</h3>
+              <h4>{company}</h4>
+              <p>{date}</p>
+              <ul>
+                {description?.map((desc) => {
+                  if (desc.type === "summary") {
+                    console.log(desc);
+                    return <p>{desc.text}</p>;
+                  }
+                  return <li>{desc.text}</li>;
+                })}
+              </ul>
+              <ul>
+                {technology?.map((tech) => (
+                  <li>{tech}</li>
+                ))}
+              </ul>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+  </div>
+
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      max-width: 920px;
+      margin: 0 auto;
+      margin-block-start: 10rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+    h2 {
+      font-size: 1.75rem;
+      position: relative;
+      display: inline-block;
+      padding-inline-end: 3rem;
+    }
+
+    .about-me {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .highlight::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      height: 5px;
+      animation-name: grow;
+      animation-duration: 0.5s;
+      animation-timing-function: ease-out;
+      animation-delay: 0.5s;
+      animation-fill-mode: forwards;
+    }
+
+    @keyframes grow {
+      from {
+        width: 0%;
+        background: #ff5d5d;
+      }
+
+      to {
+        width: 100%;
+        background: #ff5d5d;
+      }
+    }
+  </style>
+</FullScreenLayout>

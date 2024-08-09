@@ -1,0 +1,70 @@
+---
+import { Icon } from 'astro-icon/components'
+import VisibleGrid from './VisibleGrid.astro'
+const social = [
+  {
+    name: 'GitHub',
+    url: 'https://www.github.com/zapbampow',
+    icon: "brand-github"
+  },
+  {
+    name: 'LinkedIn',
+    url: 'https://www.linkedin.com/in/claytoningalls',
+    icon: "brand-linkedin"
+  }
+  ]
+---
+
+<footer>
+  <ul>
+    {social.map(({ name, url, icon }) => (
+      <li><a href={url} target="_blank"><Icon name={`tabler:${icon}`} stroke-linecap='butt' /></a></li>
+    ))}
+    </ul>   
+
+    <div class="grid-wrapper">
+      <VisibleGrid columns={30} rows={15} maskGradient="radial-gradient(ellipse closest-side, black 20%, transparent)" />
+    </div>
+</footer>
+
+<style>
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      color: hsl(0 0% 0% /.5);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    footer ul {
+        display: flex;
+        justify-content: flex-end;
+        gap: 1rem;
+        list-style: none;
+        padding: 0;
+      }
+      
+      footer li {
+        padding: 0;
+        margin: 0;
+        z-index: 10;
+    }
+    footer a {
+        display: flex;
+        align-items: center;
+        gap: 0.25rem;
+        padding: .25rem;
+        font-size: 2rem;
+        color: white;
+        text-decoration: none;
+    }
+    footer a:hover {
+        text-decoration: underline;
+    }
+    .grid-wrapper {
+        position: absolute;
+        bottom: -180%;
+        right: -25%;
+    }
+</style>

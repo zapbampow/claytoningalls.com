@@ -1,0 +1,63 @@
+---
+type Props = {
+    columns: number;
+    rows: number;
+    cellWidth?: number;
+    maskGradient?: string;
+}
+const { columns, rows, cellWidth = 20, maskGradient = "radial-gradient(circle, black 20%, transparent)" } = Astro.props;
+const width = `${columns * cellWidth}px`;
+const height = `${rows * cellWidth}px`;
+---
+
+<div class="visible-grid">
+    {Array.from({length: columns * rows}).map((item, i) => {
+        return <div class:list={[
+            "grid-cell", { 
+                topRow: i < columns, 
+                bottomRow: i > columns * rows - columns - 1, 
+                leftColumn: i % columns === 0, 
+                rightColumn: i % columns === columns - 1
+            }
+        ]} />
+    })}
+</div>
+
+<style define:vars={{ columns, rows, cellWidth,  width, height, maskGradient }}>
+	.visible-grid {
+		width: var(--width);
+		height: var(--height);
+		display: grid;
+		grid-template-columns: repeat(var(--columns), 1fr);
+		grid-template-rows: repeat(var(--rows), 1fr);
+		mask-image: var(--maskGradient);
+	}
+
+	.visible-grid:before {
+		content: "";
+		position:absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+	.grid-cell {
+		width: var(--cellWidth);
+		height: var(--cellWidth);
+		border: 1px solid hsl(0 0% 80% /.1);
+	}
+
+	.grid-cell.topRow {
+		border-top: none;
+	}
+	.grid-cell.bottomRow {
+		border-bottom: none;
+	}
+	.grid-cell.leftColumn {
+		border-left: none;
+	}
+	.grid-cell.rightColumn {
+		border-right: none;
+	}
+</style>

@@ -1,0 +1,146 @@
+---
+import VisibleGrid from "../components/VisibleGrid.astro";
+import { Image } from "astro:assets";
+import profileImage from "../images/profile.jpeg";
+import FullScreenLayout from "../layouts/FullScreenLayout.astro";
+---
+
+<FullScreenLayout title="Clayton Ingalls">
+  <div class="intro">
+    <div class="visible-grid-wrapper">
+      <VisibleGrid columns={30} rows={20} />
+    </div>
+
+    <div class="intro-img">
+      <Image src={profileImage} alt="Clayton Ingalls" />
+    </div>
+
+    <div class="intro-text">
+      <h1>Clayton Ingalls</h1>
+      <h2>Web Developer</h2>
+      <div style="width: 50%;">
+        <div class="highlight"></div>
+      </div>
+      <p>I'm a Javascript developer with 7 years of React experience.</p>
+      <p>
+        I work at Flocknote creating robust, but easy to use church management
+        software.
+      </p>
+      <p>
+        [Insert over-the-top self-promotional, AI generated copy here. Mention
+        stuff like passion, enthusiasm, and relentless pursuit of excellence.]
+      </p>
+    </div>
+  </div>
+</FullScreenLayout>
+
+<style>
+  .intro {
+    width: 100%;
+    max-width: 920px;
+    display: grid;
+    grid-template-columns: 138px 138px 1fr;
+    grid-template-rows: 92px 92px 92px 1fr;
+    margin-inline-start: 15px;
+    position: absolute;
+    top: calc(50% - 54px);
+    left: calc(50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .visible-grid-wrapper {
+    position: relative;
+    grid-column: 2 / 5;
+    grid-row: 2 / 5;
+  }
+
+  .intro-img {
+    grid-column: 1 / 3;
+    grid-row: 1 / 4;
+    z-index: 1;
+    position: relative;
+  }
+
+  .intro-img img {
+    width: 100%;
+    object-fit: cover;
+    z-index: 10;
+  }
+
+  .intro-img:before {
+    content: "";
+    position: absolute;
+    background: #ff5d5d;
+    z-index: -1;
+    animation-name: rotateBgIn;
+    animation-duration: 0.25s;
+    animation-delay: 1s;
+    animation-timing-function: ease-in-out;
+    animation-fill-mode: forwards;
+  }
+
+  .intro-text {
+    grid-column: 3 / 5;
+    grid-row: 2 / 5;
+    display: flex;
+    flex-direction: column;
+    padding: 0 2rem;
+    z-index: 2;
+  }
+
+  .intro-text h1 {
+    font-size: 3.75rem;
+    margin-block-start: 1rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+  .intro-text h2 {
+    font-size: 2rem;
+    font-weight: 100;
+  }
+
+  .intro-text p {
+    font-size: 1.5rem;
+  }
+  .intro-text p + p {
+    margin-block-start: 1rem;
+  }
+
+  .highlight {
+    height: 8px;
+    animation-name: grow;
+    animation-duration: 0.75s;
+    animation-timing-function: ease-out;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards;
+    margin-block: 0.25rem 1rem;
+  }
+
+  @keyframes grow {
+    from {
+      width: 0%;
+      background: #ff5d5d;
+    }
+    to {
+      width: 100%;
+      background: #ff5d5d;
+    }
+  }
+
+  @keyframes rotateBgIn {
+    from {
+      width: 95%;
+      height: 95%;
+      top: 0px;
+      left: 0px;
+      rotate: 0deg;
+    }
+    to {
+      width: 100%;
+      height: 100%;
+      top: 15px;
+      left: -15px;
+      rotate: 3deg;
+    }
+  }
+</style>
