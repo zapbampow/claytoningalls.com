@@ -1,23 +1,33 @@
 ---
 import FullScreenLayout from "../layouts/FullScreenLayout.astro";
 
+type Role = {
+  title: string;
+  company: string;
+  date: string;
+  url: string;
+  description: { type: string; text: string }[];
+  technology: string[];
+};
+
 const skillColor = "red";
 const skillWeight = 600;
 const skillTextCase = "uppercase";
 
-const roles = [
+const roles: Role[] = [
   {
     title: "Developer",
     company: "Flocknote",
     date: "2022 - Present",
-    descriptions: [
+    url: "https://flocknote.com",
+    description: [
       {
         type: "summary",
-        text: "I build complex, but easy to use interfaces, for a leading church management software company.",
+        text: "I build complex, but easy to use interfaces for a leading church management software company.",
       },
       {
         type: "detail",
-        text: "While I work throughout our codebase, I regularly work on payments related features and get tasked with jumping in for emergency situations",
+        text: "While I work throughout our codebase, I regularly work on payments related features and get tasked with jumping in for emergency situations.",
       },
     ],
     technology: [
@@ -34,6 +44,7 @@ const roles = [
     title: "Senior Application Developer",
     company: "NCF",
     date: "2021 - 2022",
+    url: "https://ncfgiving.com",
     description: [
       {
         type: "detail",
@@ -41,19 +52,20 @@ const roles = [
       },
       {
         type: "detail",
-        text: "Improved mobile responsiveness fo the primary client facing application",
+        text: "Improved mobile responsiveness for the primary client facing application",
       },
       {
         type: "detail",
         text: "Built proof-of-concent app for moving a legacy portal application from jQuery to Remix",
       },
     ],
-    technology: ["Javascript, React, Remix, Webpack"],
+    technology: ["Javascript", "React", "Remix", "Webpack"],
   },
   {
-    title: "Frontend Web Developer",
+    title: "Software Developer",
     company: "With One Vision",
     date: "2018 - 2021",
+    url: "https://withone.vision",
     description: [
       {
         type: "summary",
@@ -103,6 +115,7 @@ const roles = [
     title: "Teaching Assistant",
     company: "Georgia Tech Coding Bootcamp",
     date: " July 2018 - Feb 2019",
+    url: "https://pe.gatech.edu/programs/boot-camps",
     description: [
       {
         type: "summary",
@@ -178,29 +191,36 @@ const roles = [
 
       <div id="roles" class="history-section">
         <h2>Roles</h2>
-        <ul>
+        <ul class="roles">
           {
-            roles.map(({ title, company, date, description, technology }) => (
-              <li>
-                <h3>{title}</h3>
-                <h4>{company}</h4>
-                <p>{date}</p>
-                <ul>
-                  {description?.map((desc) => {
-                    if (desc.type === "summary") {
-                      console.log(desc);
-                      return <p>{desc.text}</p>;
-                    }
-                    return <li>{desc.text}</li>;
-                  })}
-                </ul>
-                <ul>
-                  {technology?.map((tech) => (
-                    <li>{tech}</li>
-                  ))}
-                </ul>
-              </li>
-            ))
+            roles.map(
+              ({ title, company, date, description, technology, url }) => (
+                <li class="role">
+                  <div class="date">{date}</div>
+                  <div class="role-details">
+                    <h3>
+                      <a href={url} target="_blank">
+                        {title} • {company}
+                      </a>
+                    </h3>
+                    <ul class="role-description">
+                      {description?.map((desc) => {
+                        if (desc.type === "summary") {
+                          console.log(desc);
+                          return <p>{desc.text}</p>;
+                        }
+                        return <li>{desc.text}</li>;
+                      })}
+                    </ul>
+                    <ul class="tech-list">
+                      {technology?.map((tech) => (
+                        <li>{tech}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              )
+            )
           }
         </ul>
       </div>
@@ -220,9 +240,9 @@ const roles = [
     .container {
       position: relative;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1.1fr;
       gap: 6rem;
-      max-width: 1024px;
+      max-width: 1200px;
       margin: 0 auto;
     }
 
@@ -249,6 +269,10 @@ const roles = [
         position: relative;
         display: inline-block;
         padding-inline-end: 3rem;
+      }
+
+      p {
+        max-width: 450px;
       }
     }
 
@@ -288,15 +312,69 @@ const roles = [
     .history {
       padding-block-start: 10rem;
       padding-block-end: 20rem;
-
-      * + * {
-        margin-block-start: 1em;
-      }
+      display: grid;
+      gap: 5rem;
+    }
+    .history-section {
+      display: grid;
+      gap: 1rem;
 
       h2 {
         font-size: 1.25rem;
         text-transform: uppercase;
         letter-spacing: 2px;
+      }
+
+      p {
+        color: #d2c6e1;
+      }
+    }
+
+    .roles {
+      display: grid;
+      gap: 2rem;
+
+      .role {
+        display: grid;
+        grid-template-columns: 135px 1fr;
+
+        .date {
+          color: #d2c6e1;
+          text-transform: uppercase;
+          font-size: 1rem;
+        }
+
+        .role-details {
+          display: grid;
+          gap: 1rem;
+
+          .role-description {
+            display: grid;
+            gap: 0.75rem;
+
+            p,
+            li {
+              font-size: 1.1rem;
+              line-height: 1.5rem;
+              color: #d2c6e1;
+            }
+          }
+        }
+      }
+    }
+
+    .tech-list {
+      display: flex;
+      gap: 0.5rem 0.75rem;
+      flex-wrap: wrap;
+
+      li {
+        display: inline-block;
+        background-color: hsl(0 0% 100% / 0.1);
+        padding: 0.25rem 1rem;
+        border-radius: 50px;
+        color: #d8bbfe;
+        font-size: 0.8rem;
       }
     }
 
