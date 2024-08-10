@@ -10,10 +10,6 @@ type Role = {
   technology: string[];
 };
 
-const skillColor = "red";
-const skillWeight = 600;
-const skillTextCase = "uppercase";
-
 const roles: Role[] = [
   {
     title: "Developer",
@@ -114,7 +110,7 @@ const roles: Role[] = [
   {
     title: "Teaching Assistant",
     company: "Georgia Tech Coding Bootcamp",
-    date: " July 2018 - Feb 2019",
+    date: " 2018 - 2019",
     url: "https://pe.gatech.edu/programs/boot-camps",
     description: [
       {
@@ -130,7 +126,7 @@ const roles: Role[] = [
 <FullScreenLayout title="About">
   <div class="container">
     <section class="about-me">
-      <div class="flex flex-col">
+      <div class="flex flex-col gap-2">
         <h1>Clayton Ingalls</h1>
         <h2 class="highlight">Web Developer</h2>
       </div>
@@ -145,7 +141,7 @@ const roles: Role[] = [
         </p>
       </div>
 
-      <nav aria-label="navigation for about page">
+      <nav class="about-nav" aria-label="navigation for about page">
         <ul>
           <li>
             <a href="#origin" class="nav-link active"
@@ -176,7 +172,7 @@ const roles: Role[] = [
         <p>
           Although I built my first website on Geocities in 1996, it wasn't
           until after a career in ministry that I decided to pursue a long time
-          dream to truly learn how code.
+          dream to truly learn to code.
         </p>
         <p>
           Using FreeCodeCamp and other online resources, I learned the skills I
@@ -235,204 +231,238 @@ const roles: Role[] = [
       </div>
     </section>
   </div>
+</FullScreenLayout>
 
-  <style>
-    .container {
+<style>
+  .container {
+    position: relative;
+    display: grid;
+    gap: 6rem;
+    margin: 0 auto;
+  }
+
+  h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+  }
+
+  p {
+    line-height: 2rem;
+  }
+
+  .about-me {
+    align-self: start;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding-block-start: 10rem;
+
+    h2 {
+      font-size: 1.75rem;
       position: relative;
-      display: grid;
-      grid-template-columns: 1fr 1.1fr;
-      gap: 6rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    h1 {
-      font-size: 2.5rem;
-      font-weight: 600;
+      display: inline-block;
+      padding-inline-end: 3rem;
     }
 
     p {
-      line-height: 2rem;
+      color: #d2c6e1;
+    }
+  }
+
+  .about-nav {
+    display: none;
+  }
+
+  nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-block-start: 2.5rem;
+  }
+  .nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    color: #d2c6e1;
+
+    & .bullet {
+      width: 2rem;
+      height: 0.1rem;
+      background-color: #d2c6e1;
+      transition: all 0.3s ease;
+    }
+    &.active {
+      font-weight: 600;
+      color: #fff;
+
+      .bullet {
+        width: 4rem;
+        height: 0.2rem;
+        background-color: #fff;
+      }
+    }
+  }
+  .nav-link.active {
+    font-weight: 600;
+  }
+
+  .history {
+    padding-block-end: 20rem;
+    display: grid;
+    gap: 5rem;
+  }
+  .history-section {
+    display: grid;
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    p {
+      color: #d2c6e1;
+    }
+  }
+
+  .roles {
+    display: grid;
+    gap: 2rem;
+
+    .role {
+      display: grid;
+
+      .date {
+        color: #d2c6e1;
+        text-transform: uppercase;
+        font-size: 1rem;
+      }
+
+      .role-details {
+        display: grid;
+        gap: 1rem;
+
+        .role-description {
+          display: grid;
+          gap: 0.75rem;
+
+          p,
+          li {
+            font-size: 1.1rem;
+            line-height: 1.5rem;
+            color: #d2c6e1;
+          }
+        }
+      }
+    }
+  }
+
+  .tech-list {
+    display: flex;
+    gap: 0.5rem 0.75rem;
+    flex-wrap: wrap;
+
+    li {
+      display: inline-block;
+      background-color: hsl(0 0% 100% / 0.1);
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      color: #d8bbfe;
+      font-size: 0.8rem;
+    }
+  }
+
+  .highlight::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    height: 5px;
+    animation-name: grow;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0.5s;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes grow {
+    from {
+      width: 0%;
+      background: #ff5d5d;
+    }
+
+    to {
+      width: 60%;
+      background: #ff5d5d;
+    }
+  }
+
+  @media screen and (min-width: 1024px) {
+    .container {
+      grid-template-columns: 1fr 1.1fr;
+      max-width: clamp(800px, 80%, 1024px);
+    }
+
+    .about-nav {
+      display: block;
     }
 
     .about-me {
       position: sticky;
       top: 0;
-      align-self: start;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-      padding-block-start: 10rem;
-
-      h2 {
-        font-size: 1.75rem;
-        position: relative;
-        display: inline-block;
-        padding-inline-end: 3rem;
-      }
 
       p {
         max-width: 450px;
       }
     }
 
-    nav ul {
-      display: flex;
-      flex-direction: column;
-      gap: 1.25rem;
-      margin-block-start: 2.5rem;
-    }
-    .nav-link {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      font-size: 0.9rem;
-
-      & .bullet {
-        width: 2rem;
-        height: 0.1rem;
-        background-color: #fff;
-        transition: all 0.3s ease;
-      }
-      &.active {
-        font-weight: 600;
-
-        .bullet {
-          width: 4rem;
-          height: 0.2rem;
-        }
-      }
-    }
-    .nav-link.active {
-      font-weight: 600;
-    }
-
     .history {
       padding-block-start: 10rem;
-      padding-block-end: 20rem;
-      display: grid;
-      gap: 5rem;
     }
-    .history-section {
-      display: grid;
-      gap: 1rem;
+  }
 
-      h2 {
-        font-size: 1.25rem;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      p {
-        color: #d2c6e1;
-      }
+  @media screen and (min-width: 1280px) {
+    .container {
+      max-width: 1024px;
     }
+    .role {
+      grid-template-columns: 135px 1fr;
+    }
+  }
+</style>
 
-    .roles {
-      display: grid;
-      gap: 2rem;
+<script>
+  function handleScroll() {
+    let main = document.querySelector("main");
+    if (!main) return;
 
-      .role {
-        display: grid;
-        grid-template-columns: 135px 1fr;
+    main.addEventListener("scroll", function () {
+      const top = main.scrollTop;
+      const sections: NodeListOf<HTMLElement> =
+        document.querySelectorAll(".history-section");
+      const navLinks = document.querySelectorAll(".nav-link");
 
-        .date {
-          color: #d2c6e1;
-          text-transform: uppercase;
-          font-size: 1rem;
+      let currentSection = "";
+
+      sections?.forEach((section) => {
+        const sectionTop = section.offsetTop;
+        if (top >= sectionTop - 350) {
+          currentSection = section.getAttribute("id") || "";
         }
-
-        .role-details {
-          display: grid;
-          gap: 1rem;
-
-          .role-description {
-            display: grid;
-            gap: 0.75rem;
-
-            p,
-            li {
-              font-size: 1.1rem;
-              line-height: 1.5rem;
-              color: #d2c6e1;
-            }
-          }
-        }
-      }
-    }
-
-    .tech-list {
-      display: flex;
-      gap: 0.5rem 0.75rem;
-      flex-wrap: wrap;
-
-      li {
-        display: inline-block;
-        background-color: hsl(0 0% 100% / 0.1);
-        padding: 0.25rem 1rem;
-        border-radius: 50px;
-        color: #d8bbfe;
-        font-size: 0.8rem;
-      }
-    }
-
-    .highlight::after {
-      content: "";
-      position: absolute;
-      bottom: -8px;
-      left: 0;
-      height: 5px;
-      animation-name: grow;
-      animation-duration: 0.5s;
-      animation-timing-function: ease-out;
-      animation-delay: 0.5s;
-      animation-fill-mode: forwards;
-    }
-
-    @keyframes grow {
-      from {
-        width: 0%;
-        background: #ff5d5d;
-      }
-
-      to {
-        width: 60%;
-        background: #ff5d5d;
-      }
-    }
-  </style>
-
-  <script>
-    function handleScroll() {
-      let main = document.querySelector("main");
-      if (!main) return;
-
-      main.addEventListener("scroll", function () {
-        const top = main.scrollTop;
-        const sections: NodeListOf<HTMLElement> =
-          document.querySelectorAll(".history-section");
-        const navLinks = document.querySelectorAll(".nav-link");
-
-        let currentSection = "";
-
-        sections?.forEach((section) => {
-          const sectionTop = section.offsetTop;
-          if (top >= sectionTop - 350) {
-            currentSection = section.getAttribute("id") || "";
-          }
-        });
-
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          if (link.getAttribute("href") === `#${currentSection}`) {
-            link.classList.add("active");
-          }
-        });
       });
-    }
 
-    handleScroll();
-  </script>
-</FullScreenLayout>
+      navLinks.forEach((link) => {
+        link.classList.remove("active");
+        if (link.getAttribute("href") === `#${currentSection}`) {
+          link.classList.add("active");
+        }
+      });
+    });
+  }
+
+  handleScroll();
+</script>
