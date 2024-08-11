@@ -1,0 +1,108 @@
+---
+import type { Role } from "@components/about/Role";
+
+type Props = Role;
+
+const { title, company, date, description, technology, url } = Astro.props;
+---
+
+<li class="role">
+  <a href={url} target="_blank">
+    <div class="date">{date}</div>
+    <div class="role-details">
+      <h3>
+        {title} • {company}
+      </h3>
+      <ul class="role-description">
+        {
+          description?.map((desc) => {
+            if (desc.type === "summary") {
+              return <p>{desc.text}</p>;
+            }
+            return <li>{desc.text}</li>;
+          })
+        }
+      </ul>
+      {
+        technology && (
+          <ul class="tech-list">
+            {technology.map((tech) => (
+              <li>{tech}</li>
+            ))}
+          </ul>
+        )
+      }
+    </div>
+  </a>
+</li>
+
+<style>
+  .role {
+    position: relative;
+    z-index: 1;
+  }
+  .role:before {
+    content: "";
+    width: calc(100% + 2rem);
+    height: calc(100% + 2rem);
+    position: absolute;
+    top: -1rem;
+    left: -1rem;
+    border-radius: 1rem;
+    background-color: hsl(0 0% 100% / 0.05);
+    border-top: 1px solid hsl(0 0% 100% / 0.1);
+    opacity: 0;
+    z-index: -1;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .role:hover::before {
+    opacity: 1;
+  }
+  .role a {
+    display: grid;
+
+    .date {
+      color: #d2c6e1;
+      text-transform: uppercase;
+      font-size: 1rem;
+    }
+
+    .role-details {
+      display: grid;
+      gap: 1rem;
+
+      .role-description {
+        display: grid;
+        gap: 0.75rem;
+
+        p,
+        li {
+          font-size: 1.1rem;
+          line-height: 1.5rem;
+          color: #d2c6e1;
+        }
+      }
+    }
+  }
+
+  .tech-list {
+    display: flex;
+    gap: 0.5rem 0.75rem;
+    flex-wrap: wrap;
+
+    li {
+      display: inline-block;
+      background-color: hsl(0 0% 100% / 0.1);
+      padding: 0.25rem 1rem;
+      border-radius: 50px;
+      color: #d8bbfe;
+      font-size: 0.8rem;
+    }
+  }
+
+  @media screen and (min-width: 1280px) {
+    .role a {
+      grid-template-columns: 135px 1fr;
+    }
+  }
+</style>

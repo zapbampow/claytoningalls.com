@@ -1,0 +1,78 @@
+---
+import Role from "@components/about/Role.astro";
+
+import { roles } from "@data/about/roles.ts";
+import { volunteerRoles } from "@data/about/volunteer.ts";
+---
+
+<section class="history">
+  <div id="origin" class="history-section">
+    <h2>Origin Story</h2>
+    <p>
+      Although I built my first website on Geocities in 1996, it wasn't until
+      after a career in ministry that I decided to pursue a long time dream to
+      truly learn to code.
+    </p>
+    <p>
+      Using FreeCodeCamp and other online resources, I learned the skills I
+      needed to land my first developer job and learned that I do indeed love
+      being a developer.
+    </p>
+    <p>
+      My main focus these days is building new features for Flocknote's church
+      management software.
+    </p>
+  </div>
+
+  <div id="roles" class="history-section">
+    <h2 class="">Roles</h2>
+    <ul class="roles">
+      {roles.map((role) => <Role {...role} />)}
+    </ul>
+  </div>
+
+  <div id="volunteer" class="history-section">
+    <h2>Volunteer</h2>
+    <ul class="roles">
+      {volunteerRoles.map((role) => <Role {...role} />)}
+    </ul>
+  </div>
+
+  <div id="projects" class="history-section">
+    <h2>Projects</h2>
+  </div>
+</section>
+
+<style>
+  .history {
+    padding-block-end: 20rem;
+    display: grid;
+    gap: 5rem;
+  }
+  .history-section {
+    display: grid;
+    gap: 1rem;
+
+    h2 {
+      font-size: 1.25rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-block-end: 1rem;
+    }
+
+    p {
+      color: #d2c6e1;
+    }
+  }
+
+  .roles {
+    display: grid;
+    gap: 3rem;
+  }
+
+  @media screen and (min-width: 1024px) {
+    .history {
+      padding-block-start: 10rem;
+    }
+  }
+</style>
