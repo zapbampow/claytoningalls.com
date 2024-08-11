@@ -8,22 +8,27 @@ import VisibleGrid from "./VisibleGrid.astro";
     <a class="home" href="/"
       ><Icon name={`tabler:home`} stroke-linecap="butt" /></a
     >
+    <div class="top-left-grid">
+      <VisibleGrid
+        columns={40}
+        rows={50}
+        maskGradient="linear-gradient(105deg, black 70%, transparent)"
+      />
+    </div>
   </li>
-  <li><a href="/about/">About</a></li>
+  <li>
+    <a href="/about/">About</a>
+    <div class="top-right-grid">
+      <VisibleGrid
+        columns={60}
+        rows={20}
+        maskGradient="radial-gradient(closest-side, black 5%, transparent)"
+      />
+    </div>
+  </li>
   <li><a href="/blog/">Blog</a></li>
   <li><a href="/tags/">Tags</a></li>
 </ul>
-
-<div class="top-left-grid">
-  <VisibleGrid columns={25} rows={50} />
-</div>
-<div class="top-right-grid">
-  <VisibleGrid
-    columns={40}
-    rows={20}
-    maskGradient="radial-gradient(circle, black 5%, transparent)"
-  />
-</div>
 
 <style>
   ul {
@@ -41,6 +46,7 @@ import VisibleGrid from "./VisibleGrid.astro";
 
   li {
     padding: 0;
+    position: relative;
   }
 
   li:first-child {
@@ -58,26 +64,23 @@ import VisibleGrid from "./VisibleGrid.astro";
   .top-right-grid {
     position: absolute;
     top: -275px;
-    right: -300px;
+    left: -225px;
     z-index: -1;
   }
   .top-left-grid {
     position: absolute;
-    top: -250px;
-    left: -360px;
+    top: -350px;
+    left: -725px;
     z-index: -1;
   }
-  @media screen and (min-width: 1441px) {
+  /* @media screen and (min-width: 1441px) {
     ul {
       max-width: 1440px;
     }
     .top-left-grid {
       top: -400px;
-      left: -27%;
+      left: 27%;
       opacity: 0.8;
-    }
-    .top-right-grid {
-      right: -27%;
     }
   }
   @media screen and (max-width: 1279px) {
@@ -87,5 +90,5 @@ import VisibleGrid from "./VisibleGrid.astro";
     .top-right-grid {
       top: -250px;
     }
-  }
+  } */
 </style>

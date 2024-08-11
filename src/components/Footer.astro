@@ -18,23 +18,25 @@ const social = [
 <footer>
   <ul>
     {
-      social.map(({ name, url, icon }) => (
+      social.map(({ name, url, icon }, index) => (
         <li>
           <a href={url} target="_blank">
             <Icon name={`tabler:${icon}`} stroke-linecap="butt" />
           </a>
+          {index === 0 && (
+            <div class="grid-wrapper">
+              <VisibleGrid
+                columns={30}
+                rows={12}
+                maskGradient="radial-gradient(closest-side, black 20%, transparent)"
+                opacity={0.15}
+              />
+            </div>
+          )}
         </li>
       ))
     }
   </ul>
-
-  <div class="grid-wrapper">
-    <VisibleGrid
-      columns={30}
-      rows={15}
-      maskGradient="radial-gradient(ellipse closest-side, black 20%, transparent)"
-    />
-  </div>
 </footer>
 
 <style>
@@ -42,10 +44,9 @@ const social = [
     position: absolute;
     bottom: 0;
     width: 100%;
-    color: hsl(0 0% 0% /0.5);
     padding: 1rem;
-    text-align: center;
-    overflow: clip;
+    /* overflow: clip; */
+    z-index: 100;
   }
 
   footer ul {
@@ -54,12 +55,13 @@ const social = [
     gap: 1rem;
     list-style: none;
     padding: 0;
+    z-index: 10;
   }
 
   footer li {
+    position: relative;
     padding: 0;
     margin: 0;
-    z-index: 10;
   }
   footer a {
     display: flex;
@@ -75,7 +77,9 @@ const social = [
   }
   .grid-wrapper {
     position: absolute;
-    bottom: -180%;
-    right: -25%;
+    top: -70px;
+    left: -150px;
+    transform: rotate(180deg);
+    z-index: -1;
   }
 </style>
