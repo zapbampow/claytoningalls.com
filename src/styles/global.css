@@ -1,5 +1,6 @@
 :root {
-    --accent: 136, 58, 234;
+    --accent: #ff5d5d;
+    --text: #d2c6e1;
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
     --accent-gradient: linear-gradient(45deg,
@@ -149,6 +150,7 @@ ul,
 li,
 a {
     font-size: 1.25rem;
+    color: var(--text);
 }
 
 /* BASIC LAYOUT */

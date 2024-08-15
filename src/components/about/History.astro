@@ -3,6 +3,8 @@ import Role from "@components/about/Role.astro";
 
 import { roles } from "@data/about/roles.ts";
 import { volunteerRoles } from "@data/about/volunteer.ts";
+import { projects } from "@data/about/projects";
+import Project from "./Project.astro";
 ---
 
 <section class="history">
@@ -40,6 +42,9 @@ import { volunteerRoles } from "@data/about/volunteer.ts";
 
   <div id="projects" class="history-section">
     <h2>Projects</h2>
+    <ul class="projects">
+      {projects.map(project => <Project {...project} />)}
+    </ul>
   </div>
 </section>
 
@@ -59,13 +64,9 @@ import { volunteerRoles } from "@data/about/volunteer.ts";
       letter-spacing: 2px;
       margin-block-end: 1rem;
     }
-
-    p {
-      color: #d2c6e1;
-    }
   }
 
-  .roles {
+  .roles, .projects {
     display: grid;
     gap: 3rem;
   }

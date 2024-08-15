@@ -70,7 +70,7 @@ import FullScreenLayout from "../layouts/FullScreenLayout.astro";
   .intro-img:before {
     content: "";
     position: absolute;
-    background: #ff5d5d;
+    background: var(--accent);
     z-index: -1;
     animation-name: rotateBgIn;
     animation-duration: 0.25s;
@@ -119,11 +119,11 @@ import FullScreenLayout from "../layouts/FullScreenLayout.astro";
   @keyframes grow {
     from {
       width: 0%;
-      background: #ff5d5d;
+      background: var(--accent);
     }
     to {
       width: 100%;
-      background: #ff5d5d;
+      background: var(--accent);
     }
   }
 

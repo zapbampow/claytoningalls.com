@@ -58,11 +58,16 @@ const { title, company, date, description, technology, url } = Astro.props;
   .role:hover::before {
     opacity: 1;
   }
+  h3 {
+    transition: color .3s;
+  }
+  .role:hover h3 {
+    color: var(--accent);
+  }
   .role a {
     display: grid;
 
     .date {
-      color: #d2c6e1;
       text-transform: uppercase;
       font-size: 1rem;
     }
@@ -79,7 +84,6 @@ const { title, company, date, description, technology, url } = Astro.props;
         li {
           font-size: 1.1rem;
           line-height: 1.5rem;
-          color: #d2c6e1;
         }
       }
     }
