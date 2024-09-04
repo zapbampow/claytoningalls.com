@@ -1,0 +1,151 @@
+---
+import { Code } from "astro:components"
+import FullScreenLayout from "@layouts/FullScreenLayout.astro"
+import { Icon } from "astro-icon/components"
+
+const regexFragments = "const decimal = `(?:\\.\\d+)`;\nconst zeroToOne = `(?:0|0?(${decimal})|1)`;\nconst zeroToNine = `[0-9]${decimal}?`;\nconst oneToNine = `[1-9]${decimal}?`;\n..."
+---
+
+<FullScreenLayout title="Color Validator">
+  <div class="page-layout">
+    <div class="headings">
+      <h1 >Color Validator</h1>
+      <h2>Validate CSS colors in JS</h2>
+      <div class="flex align-center gap-4 text-2xl">
+        <a class="text-2xl" href="https://www.github.com/zapbampow" target="_blank" rel="noopener noreferrer"><Icon name="tabler:brand-github-filled"/></a>
+        <a class="text-4xl" href="https://www.npmjs.com" target="_blank" rel="noopener noreferrer"><Icon name="tabler:brand-npm"/></a>
+      </div>
+    </div>
+    
+    <Code lang="js" code={`
+import validate from "color-validator"
+
+validate.color("#DC143C") // true
+validate.keyword("#DC143C") // false
+validate.hex("#DC143C") // true
+validate.hexAlpha("#DC143C") // false
+validate.oklch("#DC143C") // false
+validate.oklch("oklch(40.1% 0.123 21.57)") // false
+    `}>
+    </Code>
+    
+    <p>While working on another project I needed a way to check whether some text was a valid CSS color. I was working with a variety of colors, including oklch. I couldn't find anything that included oklch in their validations.</p>
+
+    <p>"Just a little regex should do," I thought. I ended up going down a rabbit hole of all the variations for each type of CSS color: named, hex, rgb, hsl, lch, etc. This was the product of that rabbit hole.</p>
+
+    <p>Looking at just hsl, there are a bunch of valid patterns.</p>
+
+    <Code lang="js" code={`
+// with commas
+hsl(0, 0%, 0%);
+hsl(0, 0%, 0%, 25%) // with alpha
+hsl(0, 0%, 0%, .25) // alpha as decimal
+hsl(20deg, 0%, 0%, 0.25) // hue as degree
+hsl(.2turn, 0%, 0%, 0.25) // hue as decimal turn
+
+// without commas
+hsl(0 0% 0%)
+hsl(0 0% 0% / 25%)
+hsl(0 0% 0% / .25) 
+hsl(20deg 0% 0% / 0.25)
+hsl(.2turn 0% 0% / 0.25)
+hsl(20 100% 100% / 1)
+
+// hsla
+hsla(0, 0%, 0%, 25%) // hsla
+hsla(0, 0%, 0%, .25)
+hsla(20 0% 0% / 0.25)
+hsla(.2turn 0% 0% / 0.25)
+    `}></Code>
+
+    <p>At the heart of the the validation are a handful of regex fragments that can be used to construct most of the color formats.</p>
+
+    <Code lang="js" code={`
+${regexFragments}
+    `}> </Code>
+
+    <p>Interestingly, as I was finishing things up I ran across the <a href="http://www.npmjs.com/validate-colors" target="_blank" rel="noopener noreferrer">validate-color</a> library. It turns out it is very similar to what I had originally looked for (still without oklch though). And it's <a href="https://github.com/dreamyguy/validate-color/blob/master/src/validate-color/index.js?plain=1#L202" target="_blank" rel="noopener noreferrer">solution</a> to the many similar, but slightly different patterns, was pretty much the same as mine. I guess there is nothing new under the sun.</p>
+  </div>
+
+</FullScreenLayout>
+
+<style>
+  .headings {
+    h1 {
+      font-size: 2.5rem
+    }
+    h2 {
+      font-size: 1.5rem;
+      color: var(--text);
+    }
+  }
+
+  .page-layout {
+    margin-block: 10rem;
+    display: grid;
+    gap: 1.5rem;
+
+    pre {
+      padding-inline: 2rem;
+    }
+  }
+
+  /* breakout grid */
+ .page-layout > *, .full-width > * {
+    grid-column: content;
+  }
+  .page-layout, .full-width {
+  --minimum-content-padding: 1rem;
+
+  /** TRACK WIDTHS **/
+  --full-max-width: 1fr;
+  --popout-max-width: 900px;
+  --content-max-width: 650px;
+  --inset-content-max-width: 500px;
+
+  /** TRACK SIZES **/
+  --full: minmax( var(--minimum-content-padding), 1fr );
+  --popout: minmax( 0, calc( ( var(--popout-max-width) - var(--content-max-width)) * 0.5 ) );
+  --content: minmax( 0, calc( ( var(--content-max-width) - var(--inset-content-max-width)) * 0.5 ) );
+  --inset-content: min( var(--inset-content-max-width), 100% - var(--minimum-content-padding) * 2 );
+
+  display: grid;
+  grid-template-columns: 
+    [full-start]
+    var(--full)
+      [popout-start]
+      var(--popout)
+        [content-start]
+        var(--content)
+          [inset-content-start]
+          var(--inset-content)
+          [inset-content-end]
+        var(--content)
+        [content-end]
+      var(--popout)
+      [popout-end]
+    var(--full)
+    [full-end];
+  }
+
+  /** CLASSES **/
+  .page-layout .full { grid-column: full; }
+  .page-layout .full-start { grid-column-start: full-start; }
+  .page-layout .full-end { grid-column-end: full-end; }
+
+  .page-layout .popout { grid-column: popout; }
+  .page-layout .popout-start { grid-column-start: popout-start; }
+  .page-layout .popout-end { grid-column-end: popout-end; }
+
+  .page-layout .content { grid-column: content; }
+  .page-layout .content-start { grid-column-start: content-start; }
+  .page-layout .content-end { grid-column-end: content-end; }
+
+  .page-layout .inset-content { grid-column: inset-content; }
+  .page-layout .inset-content-start { grid-column-start: inset-content-start; }
+  .page-layout .inset-content-end { grid-column-end: inset-content-end; }
+
+  .page-layout .full-width { grid-column: full; }
+  .page-layout .full-content, .full-content-nopad { grid-column: full; }
+  .page-layout .full-content { padding-inline: var(--minimum-content-padding); }
+</style>

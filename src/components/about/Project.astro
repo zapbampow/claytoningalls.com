@@ -1,63 +1,81 @@
 ---
-import type { Project } from "@data/about/projects"
+import type { Project } from "@data/about/projects";
+import { Icon } from "astro-icon/components";
+import ProjectDialog from "./ProjectDialog.astro";
+import type { ActionError } from "astro:actions";
 
-type Props = Project;
+type Props = {
+  project: Project;
+};
 
-const {title, shortDescription, longDescription, img, links} = Astro.props
-
+const { project } = Astro.props;
+const { title, shortDescription, longDescription, img, links, filename } =
+  project;
 ---
-<div class="wrapper">
+
+<a href={`/about/projects/${filename}`} class="project-btn" aria-role="button">
   <img src={img.url} alt={img.alt} />
 
   <div>
     <h3>{title}</h3>
     <p>{shortDescription}</p>
   </div>
-</div>
+</a>
+
+<!-- <ProjectDialog project={project} /> -->
+
+<!-- <script>
+  const dialog = document.querySelector("dialog");
+  const btn = document.querySelector(".project-btn");
+
+  btn?.addEventListener("click", () => dialog?.showModal());
+</script> -->
 
 <style>
-.wrapper {
-  position: relative;
-  display: grid;
-  grid-template-columns: 75px 1fr;
-  gap: 1rem;
-  cursor: pointer;
-  z-index: 1;
+  .project-btn {
+    position: relative;
+    display: grid;
+    grid-template-columns: 75px 1fr;
+    gap: 1rem;
+    cursor: pointer;
+    text-align: left;
+    z-index: 1;
 
-  h3 {
-    font-size: 20px;
-    transition: color .3s;
-  }
+    h3 {
+      font-size: 20px;
+      transition: color 0.3s;
+      color: #fff;
+    }
 
-  &:hover h3 {
-    color: var(--accent);
-  }
+    &:hover h3 {
+      color: var(--accent);
+    }
 
-  img {
-    width: 100%;
-  }
+    img {
+      width: 100%;
+    }
 
-  p {
-    font-size: 1.1rem;
-    color: 
-  }
+    p {
+      font-size: 1.1rem;
+      color:;
+    }
 
-  &:before {
-    content: "";
-    width: calc(100% + 2rem);
-    height: calc(100% + 2rem);
-    position: absolute;
-    top: -1rem;
-    left: -1rem;
-    border-radius: 1rem;
-    background-color: hsl(0 0% 100% / 0.05);
-    border-top: 1px solid hsl(0 0% 100% / 0.1);
-    opacity: 0;
-    z-index: -1;
-    transition: opacity 0.3s ease-in-out;
+    &:before {
+      content: "";
+      width: calc(100% + 2rem);
+      height: calc(100% + 2rem);
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      border-radius: 1rem;
+      background-color: hsl(0 0% 100% / 0.05);
+      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.3s ease-in-out;
+    }
+    &:hover::before {
+      opacity: 1;
+    }
   }
-  &:hover::before {
-    opacity: 1;
-  }
-}
-</style>  
+</style>

@@ -40,16 +40,7 @@ const { title } = Astro.props;
     margin: 0;
     padding: 0;
     max-height: 100vh;
-    background: linear-gradient(
-      #331c51,
-      #2d194a,
-      #271743,
-      #22143c,
-      #1d1136,
-      #180e2f,
-      #150928,
-      #110322
-    );
+    background: var(--background-gradient);
     overflow: hidden;
   }
   main {
@@ -58,6 +49,7 @@ const { title } = Astro.props;
     max-height: 100vh;
     overflow: auto;
     scroll-behavior: smooth;
+    padding-inline: 1rem;
   }
   code {
     font-family:

@@ -43,7 +43,7 @@ import Project from "./Project.astro";
   <div id="projects" class="history-section">
     <h2>Projects</h2>
     <ul class="projects">
-      {projects.map(project => <Project {...project} />)}
+      {projects.map(project => <Project project={project} />)}
     </ul>
   </div>
 </section>
