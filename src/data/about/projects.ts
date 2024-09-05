@@ -41,7 +41,7 @@ export const projects: Project[] = [
     ],
   },
   {
-    title: "Board game data tools",
+    title: "Board Game Data Tools",
     shortDescription: "Analyze your recorded plays from BoardGameGeek",
     longDescription: [
       `I'm an avid board gamer. Since 2009 I've tried to record every time I've played a board or card game using tools at BoardGameGeek. Over time I've included who I played with, who won, where we were, and other information.`,
