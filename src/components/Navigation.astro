@@ -3,11 +3,13 @@ import { Icon } from "astro-icon/components";
 import VisibleGrid from "./VisibleGrid.astro";
 ---
 
-<ul>
+<ul class="nav-list">
   <li>
-    <a class="home" href="/"
-      ><Icon name={`tabler:home`} stroke-linecap="butt" /></a
-    >
+    <a class="home" href="/">
+      <span>
+        <Icon name={`tabler:home`} stroke-linecap="butt" />
+      </span>
+    </a>
     <div class="top-left-grid">
       <VisibleGrid
         columns={40}
@@ -29,6 +31,19 @@ import VisibleGrid from "./VisibleGrid.astro";
   <li><a href="/blog/">Blog</a></li>
   <li><a href="/tags/">Tags</a></li>
 </ul>
+
+<button class="main-nav-btn">
+  <Icon class="menu" name={`tabler:menu-deep`} stroke-linecap="butt" />
+  <Icon class="close hide" name={`tabler:x`} stroke-linecap="butt" />
+</button>
+
+<div class="mobile-top-left-grid">
+  <VisibleGrid
+    columns={20}
+    rows={60}
+    maskGradient="radial-gradient(closest-side, black 50%, transparent)"
+  />
+</div>
 
 <style>
   ul {
@@ -73,27 +88,126 @@ import VisibleGrid from "./VisibleGrid.astro";
     left: -725px;
     z-index: -1;
   }
+
+  .mobile-top-left-grid {
+    display: none;
+    position: absolute;
+    top: -350px;
+    left: -300px;
+    z-index: -1;
+  }
+
+  .main-nav-btn {
+    position: relative;
+    display: none;
+    position: fixed;
+    top: 0.75rem;
+    right: 1rem;
+    border-radius: 50%;
+    padding: 0.5rem;
+    z-index: 100;
+  }
+
+  .hide {
+    display: none;
+  }
+  @media screen and (max-width: 700px) {
+    .main-nav-btn {
+      display: block;
+    }
+
+    ul {
+      display: flex;
+      flex-direction: column;
+      gap: 0 !important;
+      position: fixed;
+      top: 2.5rem;
+      right: 1.5rem;
+      width: 0;
+      height: 0;
+      opacity: 0;
+      scale: 0;
+      padding: 1rem 1.5rem;
+      gap: 1rem;
+      pointer-events: none;
+      transition: all 0.3s ease;
+      transform-origin: top right;
+    }
+    ul:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      border-radius: 0.5rem;
+      background: linear-gradient(#1d1136, #180e2f, #150928, #110322);
+      opacity: 0.9;
+    }
+
+    li:first-child {
+      margin: 0;
+    }
+    li a,
+    li a:not(.home) {
+      display: block;
+      padding: 0.5rem 0;
+    }
+
+    ul.open {
+      width: 15ch;
+      height: 250px;
+      opacity: 1;
+      scale: 1;
+      pointer-events: all;
+    }
+
+    .top-left-grid,
+    .top-right-grid {
+      display: none;
+    }
+
+    .mobile-top-left-grid {
+      display: block;
+    }
+  }
+
   @media screen and (max-width: 650px) {
     .top-right-grid {
       display: none;
     }
   }
-  /* @media screen and (min-width: 1441px) {
-    ul {
-      max-width: 1440px;
-    }
-    .top-left-grid {
-      top: -400px;
-      left: 27%;
-      opacity: 0.8;
-    }
-  }
-  @media screen and (max-width: 1279px) {
-    .top-left-grid {
-      top: -700px;
-    }
-    .top-right-grid {
-      top: -250px;
-    }
-  } */
 </style>
+
+<script>
+  const navList = document.querySelector(".nav-list");
+  const menuIcon = document.querySelector(".menu");
+  const closeIcon = document.querySelector(".close");
+  const menuBtn = document.querySelector(".main-nav-btn");
+
+  function toggle() {
+    navList.classList.toggle("open");
+    menuIcon.classList.toggle("hide");
+    closeIcon.classList.toggle("hide");
+  }
+
+  // Toggle the nav list when clicking the nav button
+  menuBtn.addEventListener("click", () => {
+    toggle();
+  });
+
+  // Close the nav list when clicking outside of it
+  document.addEventListener(
+    "click",
+    function (event) {
+      if (
+        !event.target.closest(".nav-list") &&
+        navList.classList.contains("open") &&
+        !event.target.closest(".main-nav-btn")
+      ) {
+        toggle();
+      }
+    },
+    false
+  );
+</script>
