@@ -1,20 +1,19 @@
 ---
-import type { GetStaticPaths } from "astro";
-import Layout from "../../layouts/Layout.astro"
+import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 
-
-    const allPosts = await Astro.glob("../posts/*.md")
-    const allTags = allPosts.flatMap(post => post.frontmatter.tags)
-    const uniqueTags = Array.from(new Set(allTags))
-
+const allPosts = await Astro.glob("../posts/*.md");
+const allTags = allPosts.flatMap((post) => post.frontmatter.tags);
+const uniqueTags = Array.from(new Set(allTags));
 ---
 
-<Layout title="Tags">
-    <ul>
-        {uniqueTags.map(tag => (
-            <li>
-                <a href={`/tags/${tag}`}>{tag}</a>
-            </li>
-        ))}
-    </ul>
-</Layout>
+<FullScreenLayout title="Tags">
+  <ul>
+    {
+      uniqueTags.map((tag) => (
+        <li>
+          <a href={`/tags/${tag}`}>{tag}</a>
+        </li>
+      ))
+    }
+  </ul>
+</FullScreenLayout>
