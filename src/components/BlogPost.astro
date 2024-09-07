@@ -1,26 +1,36 @@
 ---
-import dayjs from 'dayjs';
-import Flex from './style/Flex.astro';
+import dayjs from "dayjs";
+import Flex from "./style/Flex.astro";
+import type { CollectionEntry } from "astro:content";
 
-const {url, post: { title, published,  description } } = Astro.props;
+type Props = {
+  post: CollectionEntry<"blog">;
+};
+
+const {
+  post: {
+    slug,
+    data: { title, published, description, author, img, tags },
+  },
+} = Astro.props;
 ---
 
-<a href={url}>
-    <Flex as="article" gap=".5rem" align="center" >
-        <div class="stack">
-            <div>{dayjs(published).format("MMM")}</div>
-            <div>{dayjs(published).format("DD")}</div>
-        </div>
-        
-        <div class="stack">
-            <h2>{title}</h2>
-            <p>{description}</p>
-        </div>
-    </>
+<a href={`/blog/${slug}`}>
+  <Flex as="article" gap=".5rem" align="center">
+    <div class="stack">
+      <div>{dayjs(published).format("MMM")}</div>
+      <div>{dayjs(published).format("DD")}</div>
+    </div>
+
+    <div class="stack">
+      <h2>{title}</h2>
+      <p>{description}</p>
+    </div>
+  </Flex>
 </a>
 
 <style>
-    .gap {
-        gap: 1rem;
-    }
+  .gap {
+    gap: 1rem;
+  }
 </style>

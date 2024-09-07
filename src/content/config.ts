@@ -4,9 +4,27 @@ const snippetCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    publishedDate: z.date(),
+    publishedAt: z.date(),
     tags: z.array(z.string()),
   }),
 });
 
-export default snippetCollection;
+const blogCollection = defineCollection({
+  type: "content",
+  schema: z.object({
+    title: z.string(),
+    published: z.date(),
+    description: z.string(),
+    author: z.string(),
+    img: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    tags: z.array(z.string()),
+  }),
+});
+
+export const collections = {
+  snippets: snippetCollection,
+  blog: blogCollection,
+};

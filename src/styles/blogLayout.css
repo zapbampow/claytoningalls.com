@@ -1,3 +1,9 @@
+/* 
+    Uses CSS Grid method from this Kevin Powell video
+    https://www.patreon.com/posts/new-approach-to-92451941
+    https://www.youtube.com/watch?v=c13gpBrnGEw
+*/
+
 .blog-layout {
     margin-block: 10rem;
     row-gap: 1.5rem;
@@ -7,30 +13,29 @@
     }
 }
 
-.blog-layout>*,
-.full-width>* {
-    grid-column: content;
-}
-
 .blog-layout,
 .full-width {
     --minimum-content-padding: 0;
 
     /** TRACK WIDTHS **/
     --full-max-width: 1fr;
-    --popout-max-width: 70ch;
+    --popout-max-width: 66ch;
     --content-max-width: 60ch;
     --inset-content-max-width: 54ch;
 
     /** TRACK SIZES **/
     --full: minmax(var(--minimum-content-padding), 1fr);
-    --popout: minmax(0, calc((var(--popout-max-width) - var(--content-max-width)) * 0.5));
-    --content: minmax(0, calc((var(--content-max-width) - var(--inset-content-max-width)) * 0.5));
-    --inset-content: min(var(--inset-content-max-width), 100% - var(--minimum-content-padding) * 2);
+    --popout: minmax(0, calc(var(--popout-max-width) - var(--content-max-width)));
+    --content: minmax(0, calc(var(--content-max-width) - var(--inset-content-max-width)));
+    --inset-content: min(var(--inset-content-max-width), 100%);
 
     display: grid;
-    grid-template-columns:
-        [full-start] var(--full) [popout-start] var(--popout) [content-start] var(--content) [inset-content-start] var(--inset-content) [inset-content-end] var(--content) [content-end] var(--popout) [popout-end] var(--full) [full-end];
+    grid-template-columns: [full-start] var(--full) [popout-start] var(--popout) [content-start] var(--content) [inset-content-start] var(--inset-content) [inset-content-end] var(--content) [content-end] var(--popout) [popout-end] var(--full) [full-end]
+}
+
+.blog-layout>*,
+.full-width>* {
+    grid-column: content;
 }
 
 /** CLASSES **/
@@ -98,10 +103,20 @@
 /* Mapping html elements generated my markdown */
 .blog-layout {
 
-    h1,
     blockquote,
-    table {
+    table,
+    p:has(img) {
         grid-column: popout;
+    }
+}
+
+.blog-layout blockquote {
+    padding: 1rem;
+    border-inline-start: 4px solid var(--accent);
+    background-color: hsl(0 0% 100% / .1);
+
+    &>p {
+        font-style: italic;
     }
 }
 
@@ -109,4 +124,8 @@
 h1 {
     font-size: 3rem;
     font-weight: 700;
+}
+
+p:has(img) {
+    max-width: var(--popout-max-width);
 }

@@ -1,7 +1,6 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
 title: "Test post"
-published: "2024-07-12"
+published: 2024-07-12
 description: "Some description"
 author: "Clayton Ingalls"
 img: 
