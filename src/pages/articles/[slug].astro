@@ -5,16 +5,16 @@ import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
 
 export const getStaticPaths = (async () => {
-  const posts = await getCollection("blog");
+  const posts = await getCollection("articles");
 
-  return posts.map((post: CollectionEntry<"blog">) => {
-    console.log("post.slug", post.slug);
+  return posts.map((article: CollectionEntry<"articles">) => {
+    console.log("article.slug", article.slug);
     const pathData = {
       params: {
-        slug: post.slug,
+        slug: article.slug,
       },
       props: {
-        post,
+        article,
       },
     };
 
@@ -23,14 +23,14 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 type Props = {
-  post: CollectionEntry<"blog">;
+  article: CollectionEntry<"articles">;
 };
 console.log(Astro.props);
-const { post } = Astro.props;
-const { Content } = await post.render();
+const { article } = Astro.props;
+const { Content } = await article.render();
 ---
 
-<FullScreenLayout title={post.data.title || "Snippets"}>
+<FullScreenLayout title={article.data.title || "Snippets"}>
   <BlogLayout>
     <Content />
   </BlogLayout>

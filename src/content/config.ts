@@ -9,7 +9,7 @@ const snippetCollection = defineCollection({
   }),
 });
 
-const blogCollection = defineCollection({
+const articlesCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
@@ -26,5 +26,5 @@ const blogCollection = defineCollection({
 
 export const collections = {
   snippets: snippetCollection,
-  blog: blogCollection,
+  articles: articlesCollection,
 };
