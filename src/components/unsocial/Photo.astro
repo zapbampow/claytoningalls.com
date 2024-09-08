@@ -12,7 +12,7 @@ const {
 const date = dayjs(publishedAt).format("MMM D, YYYY");
 ---
 
-<div>
+<article>
   <div class="photo-content">
     <img src={image?.url} alt={image?.alt} />
     <div class="photo-comment">
@@ -20,6 +20,6 @@ const date = dayjs(publishedAt).format("MMM D, YYYY");
       <p class="date">{date}</p>
     </div>
   </div>
-</div>
+</article>
 
 <style></style>

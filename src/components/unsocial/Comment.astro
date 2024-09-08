@@ -12,9 +12,9 @@ const {
 const date = dayjs(publishedAt).format("MMM D, YYYY");
 ---
 
-<div>
+<article>
   <div class="comment-content">
     <slot />
     <p class="publishedDate">{date}</p>
   </div>
-</div>
+</article>
