@@ -1,0 +1,46 @@
+---
+import BlogLayout from "@layouts/BlogLayout.astro";
+import FullScreenLayout from "@layouts/FullScreenLayout.astro";
+import { getCollection } from "astro:content";
+import PostTypeSwitch from "@components/unsocial/PostTypeSwitch.astro";
+
+const posts = await getCollection("unsocial");
+const ordered = posts.sort((a, b) => {
+  const dateA = new Date(a.data.publishedAt);
+  const dateB = new Date(b.data.publishedAt);
+  return dateB - dateA;
+});
+const content = await Promise.all(
+  ordered.map(async (post) => {
+    const { Content } = await post.render();
+    return Content;
+  })
+);
+
+const pageTitle = "Unsocial";
+---
+
+<FullScreenLayout title={pageTitle}>
+  <BlogLayout className="photo comment article link">
+    <h1>{pageTitle}</h1>
+    {
+      posts.map((post, index) => {
+        const Content = content[index];
+        return (
+          <PostTypeSwitch post={post}>
+            <Content />
+          </PostTypeSwitch>
+        );
+      })
+    }
+  </BlogLayout>
+</FullScreenLayout>
+
+<style>
+  .blog-layout.photo,
+  .blog-layout.comment,
+  .blog-layout.article,
+  .blog-layout.link {
+    row-gap: 3rem;
+  }
+</style>

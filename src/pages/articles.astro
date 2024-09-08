@@ -8,7 +8,6 @@ const pageTitle = "My Astro Learning Blog";
 ---
 
 <FullScreenLayout title={pageTitle}>
-  <p>This is where I will post about my journey learning Astro.</p>
   <ul>
     {
       posts.map((post) => (
@@ -21,3 +20,9 @@ const pageTitle = "My Astro Learning Blog";
     }
   </ul>
 </FullScreenLayout>
+
+<style>
+  ul {
+    margin-block: 10rem;
+  }
+</style>

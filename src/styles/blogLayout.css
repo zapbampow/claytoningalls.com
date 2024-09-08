@@ -5,7 +5,7 @@
 */
 
 .blog-layout {
-    margin-block: 10rem;
+    margin-block: 5rem;
     row-gap: 1.5rem;
 
     pre {
@@ -128,4 +128,20 @@ h1 {
 
 p:has(img) {
     max-width: var(--popout-max-width);
+}
+
+/* Blog Layout */
+.blog-layout.photo,
+.blog-layout.comment,
+.blog-layout.article,
+.blog-layout.link {
+    row-gap: 0;
+
+    >* {
+        padding-block: 2rem;
+    }
+
+    >*+* {
+        border-top: 3px solid hsl(0 0% 100% / .075);
+    }
 }

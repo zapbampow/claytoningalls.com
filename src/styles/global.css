@@ -1,16 +1,14 @@
 :root {
     --accent: #ff5d5d;
     --text: #d2c6e1;
-    --background-gradient: linear-gradient(
-      #331c51,
-      #2d194a,
-      #271743,
-      #22143c,
-      #1d1136,
-      #180e2f,
-      #150928,
-      #110322
-    );
+    --background-gradient: linear-gradient(#331c51,
+            #2d194a,
+            #271743,
+            #22143c,
+            #1d1136,
+            #180e2f,
+            #150928,
+            #110322);
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
     --accent-gradient: linear-gradient(45deg,

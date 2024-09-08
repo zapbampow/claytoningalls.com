@@ -1,0 +1,27 @@
+---
+import Comment from "./Comment.astro";
+import Photo from "./Photo.astro";
+import "./unsocial.css";
+
+const props = Astro.props;
+
+const { post } = props;
+console.log(post);
+const type = post.data.type;
+const data = post.data;
+---
+
+{
+  type === "comment" && (
+    <Comment data={data}>
+      <slot />
+    </Comment>
+  )
+}
+{
+  type === "photo" && (
+    <Photo data={data}>
+      <slot />
+    </Photo>
+  )
+}

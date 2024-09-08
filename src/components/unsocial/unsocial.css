@@ -1,0 +1,52 @@
+.comment,
+.photo {
+    --radius: .5rem;
+    --content-bg: hsl(0 0% 100% / .75);
+    --content-text: #331c51;
+    --box-shadow: 3px 3px var(--accent);
+}
+
+/* COMMENT AND PHOTO TEXT CONTAINER */
+.comment-content,
+.photo-comment {
+    background-color: var(--content-bg);
+    box-shadow: var(--box-shadow);
+
+    & * {
+        color: var(--content-text);
+    }
+
+    .date,
+    .publishedDate {
+        font-size: .75rem;
+        text-align: right;
+    }
+}
+
+/* COMMENT */
+.comment-content {
+    padding: 1rem;
+    border-radius: var(--radius);
+}
+
+/* PHOTO */
+.photo {
+    img {
+        width: 100%;
+        border-top-left-radius: var(--radius);
+        border-top-right-radius: var(--radius);
+        grid-column: popout;
+    }
+
+    p:not(.date) {
+        font-weight: 500;
+    }
+
+    .photo-comment {
+        padding: 1rem;
+        border-bottom-left-radius: var(--radius);
+        border-bottom-right-radius: var(--radius);
+
+    }
+
+}

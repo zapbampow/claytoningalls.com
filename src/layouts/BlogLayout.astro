@@ -1,8 +1,9 @@
 ---
 import "@styles/blogLayout.css";
+const { className } = Astro.props;
 ---
 
-<div class="blog-layout">
+<div class:list={["blog-layout", className]}>
   <slot />
 </div>
 

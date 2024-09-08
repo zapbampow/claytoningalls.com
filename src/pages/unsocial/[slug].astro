@@ -1,0 +1,41 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import FullScreenLayout from "@layouts/FullScreenLayout.astro";
+import BlogLayout from "@layouts/BlogLayout.astro";
+import PostTypeSwitch from "@components/unsocial/PostTypeSwitch.astro";
+
+export const getStaticPaths = (async () => {
+  const posts = await getCollection("unsocial");
+
+  return posts.map((post: CollectionEntry<"unsocial">) => {
+    console.log("post.slug", post.slug);
+    const pathData = {
+      params: {
+        slug: post.slug,
+      },
+      props: {
+        post,
+      },
+    };
+
+    return pathData;
+  });
+}) satisfies GetStaticPaths;
+
+type Props = {
+  post: CollectionEntry<"unsocial">;
+};
+
+const { post } = Astro.props;
+console.log("POST", post);
+const { Content } = await post.render();
+---
+
+<FullScreenLayout title={post.data.title || "Snippets"}>
+  <BlogLayout className={post.data.type}>
+    <PostTypeSwitch post={post}>
+      <Content />
+    </PostTypeSwitch>
+  </BlogLayout>
+</FullScreenLayout>

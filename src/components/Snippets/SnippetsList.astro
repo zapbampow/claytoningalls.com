@@ -6,14 +6,13 @@ const snippets = await getCollection("snippets");
 ---
 
 <ul class="snippets-list">
-  {snippets.map((snippet) => (
-    <Snippet snippet={snippet} />
-  ))}
+  {snippets.map((snippet) => <Snippet snippet={snippet} />)}
 </ul>
 
 <style>
-    .snippets-list {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-    }
+  .snippets-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-block: 10rem;
+  }
 </style>
