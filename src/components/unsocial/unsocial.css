@@ -1,6 +1,8 @@
 .comment,
-.photo {
-    --radius: .5rem;
+.photo,
+.article-preview,
+.article {
+    --radius: 0;
     --content-bg: hsl(0 0% 100% / .75);
     --content-text: #331c51;
     --box-shadow: 3px 3px var(--accent);
@@ -59,6 +61,7 @@
     .image-wrapper {
         width: 100%;
 
+
         img {
             border-radius: var(--radius);
             object-fit: cover;
@@ -80,29 +83,30 @@
             font-weight: 700;
         }
 
-        h2:before {
-            content: "";
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 100%;
-            max-width: 8ch;
-            height: 2px;
-            background-color: var(--accent);
+        .article-tags {
+            display: flex;
+            gap: .5rem;
+            margin-block-start: .25rem;
+
+            li {
+                font-size: .75rem;
+                border: 1px solid var(--text);
+                padding: 0 .75rem;
+                border-radius: 1rem;
+            }
         }
 
-    }
 
-    .description {
-        grid-column: 1 / -1;
     }
 
     .read-btn {
+        position: relative;
         margin-block-start: auto;
         border: 1px solid var(--text);
         padding: .25rem 1rem;
         width: fit-content;
         font-size: 1rem;
+        box-shadow: var(--box-shadow);
     }
 
 }

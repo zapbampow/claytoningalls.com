@@ -22,6 +22,15 @@ const date = dayjs(publishedAt).format("MMM D, YYYY");
   <div class="article-summary">
     <p class="publishedDate">{date}</p>
     <h2>{title}</h2>
+    {
+      tags?.length && (
+        <ul class="article-tags">
+          {tags.map((tag) => (
+            <li>{tag}</li>
+          ))}
+        </ul>
+      )
+    }
     <a class="read-btn" href={`/unsocial/${slug}`}>Read</a>
   </div>
 </article>
