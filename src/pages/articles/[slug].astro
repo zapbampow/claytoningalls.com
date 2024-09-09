@@ -8,7 +8,6 @@ export const getStaticPaths = (async () => {
   const posts = await getCollection("articles");
 
   return posts.map((article: CollectionEntry<"articles">) => {
-    console.log("article.slug", article.slug);
     const pathData = {
       params: {
         slug: article.slug,
@@ -25,7 +24,6 @@ export const getStaticPaths = (async () => {
 type Props = {
   article: CollectionEntry<"articles">;
 };
-console.log(Astro.props);
 const { article } = Astro.props;
 const { Content } = await article.render();
 ---

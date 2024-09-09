@@ -1,0 +1,36 @@
+---
+import { UnsocialSchema } from "@content/config.ts";
+import { z } from "astro:content";
+import dayjs from "dayjs";
+
+type Data = z.infer<typeof UnsocialSchema>;
+type Props = { data: Data };
+
+const { data } = Astro.props;
+console.log("DATA", data);
+const title = data.title,
+  publishedAt = data.publishedAt,
+  image = data.image,
+  description = data.description,
+  tags = data.tags;
+const date = dayjs(publishedAt).format("MMM D, YYYY");
+---
+
+<h1>{title}</h1>
+
+<slot />
+
+<style>
+  h1 {
+    position: relative;
+  }
+  h1:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 8ch;
+    height: 2px;
+    background-color: var(--accent);
+  }
+</style>

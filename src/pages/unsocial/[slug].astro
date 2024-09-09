@@ -9,7 +9,6 @@ export const getStaticPaths = (async () => {
   const posts = await getCollection("unsocial");
 
   return posts.map((post: CollectionEntry<"unsocial">) => {
-    console.log("post.slug", post.slug);
     const pathData = {
       params: {
         slug: post.slug,
@@ -28,7 +27,6 @@ type Props = {
 };
 
 const { post } = Astro.props;
-console.log("POST", post);
 const { Content } = await post.render();
 ---
 

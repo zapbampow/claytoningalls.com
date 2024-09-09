@@ -1,12 +1,13 @@
 ---
 import Comment from "./Comment.astro";
 import Photo from "./Photo.astro";
+import ArticlePreview from "./ArticlePreview.astro";
+import Article from "./Article.astro";
 import "./unsocial.css";
 
 const props = Astro.props;
-
-const { post } = props;
-console.log(post);
+console.log("Props", props);
+const { post, isPreview } = props;
 const type = post.data.type;
 const data = post.data;
 ---
@@ -23,5 +24,17 @@ const data = post.data;
     <Photo data={data}>
       <slot />
     </Photo>
+  )
+}
+{
+  type === "article" && isPreview && (
+    <ArticlePreview data={data} slug={post.slug} />
+  )
+}
+{
+  type === "article" && !isPreview && (
+    <Article data={data}>
+      <slot />
+    </Article>
   )
 }

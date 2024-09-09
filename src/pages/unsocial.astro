@@ -21,13 +21,13 @@ const pageTitle = "Unsocial";
 ---
 
 <FullScreenLayout title={pageTitle}>
-  <BlogLayout className="photo comment article link">
+  <BlogLayout className="unsocial-feed photo comment article link">
     <h1>{pageTitle}</h1>
     {
       posts.map((post, index) => {
         const Content = content[index];
         return (
-          <PostTypeSwitch post={post}>
+          <PostTypeSwitch post={post} isPreview={true}>
             <Content />
           </PostTypeSwitch>
         );

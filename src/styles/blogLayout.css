@@ -131,10 +131,10 @@ p:has(img) {
 }
 
 /* Blog Layout */
-.blog-layout.photo,
-.blog-layout.comment,
-.blog-layout.article,
-.blog-layout.link {
+.blog-layout.photo.unsocial-feed,
+.blog-layout.comment.unsocial-feed,
+.blog-layout.article.unsocial-feed,
+.blog-layout.link.unsocial-feed {
     row-gap: 0;
 
     >* {
