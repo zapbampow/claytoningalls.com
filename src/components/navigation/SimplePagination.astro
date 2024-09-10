@@ -1,0 +1,31 @@
+---
+import { Icon } from "astro-icon/components";
+
+const { page, baseUrl } = Astro.props;
+
+const btnClasses = "flex gap-2 align-center border border-white rounded px-4";
+---
+
+<div class="flex justify-between">
+  {
+    page.currentPage > 1 && (
+      <a class={btnClasses} href={`/${baseUrl}/${page.currentPage - 1}`}>
+        <Icon name="tabler:arrow-left" />
+        Previous
+      </a>
+    )
+  }
+  {
+    page.currentPage < page.lastPage && (
+      <a
+        class={`${btnClasses} ml-auto`}
+        href={`/${baseUrl}/${page.currentPage + 1}`}
+      >
+        Next
+        <Icon name="tabler:arrow-right" />
+      </a>
+    )
+  }
+</div>
+
+<style></style>
