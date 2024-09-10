@@ -1,10 +1,13 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { getCollection } from "astro:content";
+import dayjs from "dayjs";
+
+import { capitalize, singularize } from "@lib/stringUtils.ts";
+
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
-import dayjs from "dayjs";
-import { Icon } from "astro-icon/components";
+import SimplePagination from "@components/navigation/SimplePagination.astro";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const articles = await getCollection("articles");
@@ -22,7 +25,6 @@ const { page } = Astro.props;
 console.log(page);
 
 const pageTitle = "Blog";
-const btnClasses = "flex gap-2 align-center border border-white rounded px-4";
 ---
 
 <FullScreenLayout title={pageTitle}>
@@ -33,6 +35,9 @@ const btnClasses = "flex gap-2 align-center border border-white rounded px-4";
         page.data.map((post) => (
           <li>
             <a href={`/${post.collection}/${post.slug}`}>
+              <p class="post-type">
+                {singularize(post.collection).toUpperCase()}
+              </p>
               <h2>{post.data.title}</h2>
               <p class="date">
                 {dayjs(post.data.publishedAt).format("MMM D, YYYY")}
@@ -46,98 +51,76 @@ const btnClasses = "flex gap-2 align-center border border-white rounded px-4";
       }
     </ul>
 
-    <div class="flex justify-between">
-      {
-        page.currentPage > 1 && (
-          <a class={btnClasses} href={`/blog/${page.currentPage - 1}`}>
-            <Icon name="tabler:arrow-left" />
-            Previous
-          </a>
-        )
-      }
-      {
-        page.currentPage < page.lastPage && (
-          <a
-            class={`${btnClasses} ml-auto`}
-            href={`/blog/${page.currentPage + 1}`}
-          >
-            Next
-            <Icon name="tabler:arrow-right" />
-          </a>
-        )
-      }
-    </div>
+    <SimplePagination page={page} baseUrl="blog" />
   </BlogLayout>
-</FullScreenLayout>
 
-<style>
-  ul {
-    margin-block: 2rem;
-    display: grid;
-    gap: 2rem;
-
-    --radius: 0;
-    --content-bg: hsl(0 0% 100% / 0.75);
-    --content-text: #331c51;
-    --box-shadow: 3px 3px var(--accent);
-  }
-
-  li {
-    position: relative;
-    /* padding: 1rem;
-      background: var(--content-bg);
-      box-shadow: var(--box-shadow); */
-
-    /* * {
-        color: var(--content-text);
-      } */
-
-    .date {
-      font-size: 0.75rem;
-    }
-
-    .description {
-      font-size: 1rem;
-    }
-    h2 {
-      transition: color 0.3s ease-in-out;
-    }
-    &:hover h2 {
-      color: var(--accent);
-    }
-
-    &:before {
-      content: "";
-      width: calc(100% + 2rem);
-      height: calc(100% + 2rem);
-      position: absolute;
-      top: -1rem;
-      left: -1rem;
-      border-radius: 1rem;
-      background-color: hsl(0 0% 100% / 0.05);
-      border-top: 1px solid hsl(0 0% 100% / 0.1);
-      opacity: 0;
-      z-index: -1;
-      transition: opacity 0.3s ease-in-out;
-    }
-
-    &:hover::before {
-      opacity: 1;
-    }
-  }
-
-  @media screen and (max-width: 700px) {
+  <style>
     ul {
-      gap: 3rem;
-      margin-inline: 1rem;
+      margin-block: 2rem;
+      display: grid;
+      gap: 2rem;
+
+      --radius: 0;
+      --content-bg: hsl(0 0% 100% / 0.75);
+      --content-text: #331c51;
+      --box-shadow: 3px 3px var(--accent);
     }
 
-    li:before {
-      opacity: 1;
+    li {
+      position: relative;
+      border-left: 3px solid var(--accent);
+      padding-left: 8px;
+      .post-type {
+        font-size: 0.75rem;
+      }
+
+      .date {
+        font-size: 0.75rem;
+      }
+
+      .description {
+        font-size: 1rem;
+      }
+      h2 {
+        transition: color 0.3s ease-in-out;
+      }
+      &:hover h2 {
+        /* color: var(--accent); */
+      }
+
+      &:before {
+        content: "";
+        width: calc(100% + 2rem);
+        height: calc(100% + 2rem);
+        position: absolute;
+        top: -1rem;
+        left: -1rem;
+        border-radius: 1rem;
+        background-color: hsl(0 0% 100% / 0.05);
+        border-top: 1px solid hsl(0 0% 100% / 0.1);
+        opacity: 0;
+        z-index: -1;
+        transition: opacity 0.3s ease-in-out;
+      }
+
+      &:hover::before {
+        opacity: 1;
+      }
     }
 
-    h2 {
-      color: var(--accent);
+    @media screen and (max-width: 700px) {
+      ul {
+        gap: 3rem;
+        margin-inline: 1rem;
+      }
+
+      li:before {
+        opacity: 1;
+      }
+
+      h2 {
+        color: var(--accent);
+      }
     }
-  }
-</style>
+  </style>
+</FullScreenLayout>
