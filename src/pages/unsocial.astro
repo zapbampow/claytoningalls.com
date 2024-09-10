@@ -3,11 +3,12 @@ import BlogLayout from "@layouts/BlogLayout.astro";
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import { getCollection } from "astro:content";
 import PostTypeSwitch from "@components/unsocial/PostTypeSwitch.astro";
+import dayjs from "dayjs";
 
 const posts = await getCollection("unsocial");
 const ordered = posts.sort((a, b) => {
-  const dateA = new Date(a.data.publishedAt);
-  const dateB = new Date(b.data.publishedAt);
+  const dateA = dayjs(a.toString()).unix();
+  const dateB = dayjs(b.toString()).unix();
   return dateB - dateA;
 });
 const content = await Promise.all(

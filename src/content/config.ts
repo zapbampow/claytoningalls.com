@@ -13,13 +13,15 @@ const articlesCollection = defineCollection({
   type: "content",
   schema: z.object({
     title: z.string(),
-    published: z.date(),
-    description: z.string(),
-    author: z.string(),
-    img: z.object({
-      url: z.string(),
-      alt: z.string(),
-    }),
+    publishedAt: z.date(),
+    description: z.string().optional(),
+    author: z.string().optional(),
+    img: z
+      .object({
+        url: z.string(),
+        alt: z.string(),
+      })
+      .optional(),
     tags: z.array(z.string()),
   }),
 });

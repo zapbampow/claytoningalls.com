@@ -1,6 +1,6 @@
 ---
 title: 'First Snippet'
-publishedAt: 2024-12-31
+publishedAt: 2024-07-08
 tags: ['snippet', 'js']
 ---
 

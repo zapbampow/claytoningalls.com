@@ -30,6 +30,7 @@ const { Content } = await article.render();
 
 <FullScreenLayout title={article.data.title || "Snippets"}>
   <BlogLayout>
+    <h1>{article.data.title}</h1>
     <Content />
   </BlogLayout>
 </FullScreenLayout>

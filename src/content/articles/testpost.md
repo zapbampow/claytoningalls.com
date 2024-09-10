@@ -1,6 +1,6 @@
 ---
 title: "Test post"
-published: 2024-07-12
+publishedAt: 2024-07-01
 description: "Some description"
 author: "Clayton Ingalls"
 img: 

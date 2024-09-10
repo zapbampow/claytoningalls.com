@@ -1,6 +1,6 @@
 ---
 title: "Second Post"
-published: 2024-07-12
+publishedAt: 2024-07-12
 description: "Some description"
 author: "Clayton Ingalls"
 img: 
