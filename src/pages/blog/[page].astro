@@ -1,0 +1,143 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection, type CollectionEntry } from "astro:content";
+import FullScreenLayout from "@layouts/FullScreenLayout.astro";
+import BlogLayout from "@layouts/BlogLayout.astro";
+import dayjs from "dayjs";
+import { Icon } from "astro-icon/components";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const articles = await getCollection("articles");
+  const snippets = await getCollection("snippets");
+
+  const posts = [...articles, ...snippets].sort((a, b) => {
+    const dateA = dayjs(a.data.publishedAt).unix();
+    const dateB = dayjs(b.data.publishedAt).unix();
+    return dateB - dateA;
+  });
+  return paginate(posts, { pageSize: 4 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+console.log(page);
+
+const pageTitle = "Blog";
+const btnClasses = "flex gap-2 align-center border border-white rounded px-4";
+---
+
+<FullScreenLayout title={pageTitle}>
+  <BlogLayout>
+    <h1>{pageTitle}</h1>
+    <ul>
+      {
+        page.data.map((post) => (
+          <li>
+            <a href={`/${post.collection}/${post.slug}`}>
+              <h2>{post.data.title}</h2>
+              <p class="date">
+                {dayjs(post.data.publishedAt).format("MMM D, YYYY")}
+              </p>
+              {post.data?.description && (
+                <p class="description">{post.data.description}</p>
+              )}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+
+    <div class="flex justify-between">
+      {
+        page.currentPage > 1 && (
+          <a class={btnClasses} href={`/blog/${page.currentPage - 1}`}>
+            <Icon name="tabler:arrow-left" />
+            Previous
+          </a>
+        )
+      }
+      {
+        page.currentPage < page.lastPage && (
+          <a
+            class={`${btnClasses} ml-auto`}
+            href={`/blog/${page.currentPage + 1}`}
+          >
+            Next
+            <Icon name="tabler:arrow-right" />
+          </a>
+        )
+      }
+    </div>
+  </BlogLayout>
+</FullScreenLayout>
+
+<style>
+  ul {
+    margin-block: 2rem;
+    display: grid;
+    gap: 2rem;
+
+    --radius: 0;
+    --content-bg: hsl(0 0% 100% / 0.75);
+    --content-text: #331c51;
+    --box-shadow: 3px 3px var(--accent);
+  }
+
+  li {
+    position: relative;
+    /* padding: 1rem;
+      background: var(--content-bg);
+      box-shadow: var(--box-shadow); */
+
+    /* * {
+        color: var(--content-text);
+      } */
+
+    .date {
+      font-size: 0.75rem;
+    }
+
+    .description {
+      font-size: 1rem;
+    }
+    h2 {
+      transition: color 0.3s ease-in-out;
+    }
+    &:hover h2 {
+      color: var(--accent);
+    }
+
+    &:before {
+      content: "";
+      width: calc(100% + 2rem);
+      height: calc(100% + 2rem);
+      position: absolute;
+      top: -1rem;
+      left: -1rem;
+      border-radius: 1rem;
+      background-color: hsl(0 0% 100% / 0.05);
+      border-top: 1px solid hsl(0 0% 100% / 0.1);
+      opacity: 0;
+      z-index: -1;
+      transition: opacity 0.3s ease-in-out;
+    }
+
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    ul {
+      gap: 3rem;
+      margin-inline: 1rem;
+    }
+
+    li:before {
+      opacity: 1;
+    }
+
+    h2 {
+      color: var(--accent);
+    }
+  }
+</style>

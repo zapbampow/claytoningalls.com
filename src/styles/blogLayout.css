@@ -127,6 +127,11 @@ h1 {
     font-weight: 700;
 }
 
+h2 {
+    font-size: 2rem;
+    font-weight: 700;
+}
+
 p:has(img) {
     max-width: var(--popout-max-width);
 }
