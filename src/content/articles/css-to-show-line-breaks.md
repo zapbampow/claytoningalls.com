@@ -1,7 +1,7 @@
 ---
 publishedAt: 2024-08-13
 title: How to use CSS to show line breaks
-description: How to use the white-space property display line breaks (\n) your html content
+description: How to use the white-space property to display line breaks (\n) in your html content
 tags: ["css"]
 ---
 

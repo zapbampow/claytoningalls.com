@@ -30,7 +30,7 @@ const pageTitle = "Blog";
 <FullScreenLayout title={pageTitle}>
   <BlogLayout>
     <h1>{pageTitle}</h1>
-    <ul>
+    <ul class="blog-list">
       {
         page.data.map((post) => (
           <li>
@@ -39,9 +39,18 @@ const pageTitle = "Blog";
                 {singularize(post.collection).toUpperCase()}
               </p>
               <h2>{post.data.title}</h2>
-              <p class="date">
-                {dayjs(post.data.publishedAt).format("MMM D, YYYY")}
-              </p>
+              <div class="flex align-center gap-4">
+                {post.data.tags.length > 0 && (
+                  <ul class="tag-list">
+                    {post.data.tags.map((tag) => (
+                      <li class="tag">{capitalize(tag)}</li>
+                    ))}
+                  </ul>
+                )}
+                <p class="date">
+                  {dayjs(post.data.publishedAt).format("MMM D, YYYY")}
+                </p>
+              </div>
               {post.data?.description && (
                 <p class="description">{post.data.description}</p>
               )}
@@ -55,7 +64,7 @@ const pageTitle = "Blog";
   </BlogLayout>
 
   <style>
-    ul {
+    ul.blog-list {
       margin-block: 2rem;
       display: grid;
       gap: 2rem;
@@ -64,47 +73,64 @@ const pageTitle = "Blog";
       --content-bg: hsl(0 0% 100% / 0.75);
       --content-text: #331c51;
       --box-shadow: 3px 3px var(--accent);
+
+      & > li {
+        position: relative;
+        border-left: 3px solid var(--accent);
+        padding-left: 8px;
+        .post-type {
+          font-size: 0.75rem;
+        }
+
+        .date {
+          font-size: 0.75rem;
+        }
+
+        .description {
+          font-size: 1rem;
+          margin-block-start: 0.5rem;
+        }
+        h2 {
+          text-wrap: pretty;
+          transition: color 0.3s ease-in-out;
+        }
+        &:hover h2 {
+          /* color: var(--accent); */
+        }
+
+        &:before {
+          content: "";
+          width: calc(100% + 2rem);
+          height: calc(100% + 2rem);
+          position: absolute;
+          top: -1rem;
+          left: -1rem;
+          border-radius: 1rem;
+          background-color: hsl(0 0% 100% / 0.05);
+          border-top: 1px solid hsl(0 0% 100% / 0.1);
+          opacity: 0;
+          z-index: -1;
+          transition: opacity 0.3s ease-in-out;
+        }
+
+        &:hover::before {
+          opacity: 1;
+        }
+      }
     }
 
-    li {
-      position: relative;
-      border-left: 3px solid var(--accent);
-      padding-left: 8px;
-      .post-type {
+    ul.tag-list {
+      display: flex;
+      gap: 0.25rem;
+
+      & > li.tag {
         font-size: 0.75rem;
-      }
-
-      .date {
-        font-size: 0.75rem;
-      }
-
-      .description {
-        font-size: 1rem;
-      }
-      h2 {
-        transition: color 0.3s ease-in-out;
-      }
-      &:hover h2 {
-        /* color: var(--accent); */
-      }
-
-      &:before {
-        content: "";
-        width: calc(100% + 2rem);
-        height: calc(100% + 2rem);
-        position: absolute;
-        top: -1rem;
-        left: -1rem;
+        padding: 0 0.5rem;
         border-radius: 1rem;
-        background-color: hsl(0 0% 100% / 0.05);
-        border-top: 1px solid hsl(0 0% 100% / 0.1);
-        opacity: 0;
-        z-index: -1;
-        transition: opacity 0.3s ease-in-out;
-      }
-
-      &:hover::before {
-        opacity: 1;
+        background-color: transparent;
+        border: 1px solid var(--text-faded);
+        color: var(--text-faded);
+        line-height: 0.85rem;
       }
     }
 

@@ -1,6 +1,7 @@
 :root {
     --accent: #ff5d5d;
-    --text: #d2c6e1;
+    --text: hsl(267 31% 83%);
+    --text-faded: hsl(267 31% 83% / .65);
     --background-gradient: linear-gradient(#331c51,
             #2d194a,
             #271743,
