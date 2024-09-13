@@ -3,6 +3,9 @@ import VisibleGrid from "../components/VisibleGrid.astro";
 import { Image } from "astro:assets";
 import profileImage from "../images/profile.jpeg";
 import FullScreenLayout from "../layouts/FullScreenLayout.astro";
+import dayjs from "dayjs";
+
+const yearsOfExperience = dayjs().diff(dayjs("2018-01-01"), "year");
 ---
 
 <FullScreenLayout title="Clayton Ingalls">
@@ -21,7 +24,11 @@ import FullScreenLayout from "../layouts/FullScreenLayout.astro";
       <div style="width: 50%;">
         <div class="highlight"></div>
       </div>
-      <p>I'm a Javascript developer with 7 years of React experience.</p>
+      <p>
+        {
+          `I'm a Javascript developer with ${yearsOfExperience} years of React experience.`
+        }
+      </p>
       <p>
         I work at Flocknote creating robust, but easy to use church management
         software.
