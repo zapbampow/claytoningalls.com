@@ -113,7 +113,7 @@ textarea:not([rows]) {
 /* OTHER BROAD UNIVERSAL STYLES */
 
 html {
-    font-family: Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
+    font-family: "Figtree", Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
     background: #13151a;
     background-size: 224px;
     margin: 0;
@@ -144,14 +144,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: Menlo,
-        Monaco,
-        Lucida Console,
-        Liberation Mono,
-        DejaVu Sans Mono,
-        Bitstream Vera Sans Mono,
-        Courier New,
-        monospace;
+    font-family: inherit;
 }
 
 p,
@@ -161,6 +154,8 @@ a {
     font-size: 1.25rem;
     color: var(--text);
 }
+
+/* FONT WEIGHTS */
 
 /* BASIC LAYOUT */
 .stack {
