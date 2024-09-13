@@ -39,6 +39,21 @@
     grid-column: content;
 }
 
+.blog-layout.popout>*,
+.full-width.popout>* {
+    grid-column: popout;
+}
+
+.blog-layout.full>*,
+.full-width.full>* {
+    grid-column: full;
+}
+
+.blog-layout.inset-content>*,
+.full-width.inset-content>* {
+    grid-column: inset-content;
+}
+
 /** CLASSES **/
 .full {
     grid-column: full;

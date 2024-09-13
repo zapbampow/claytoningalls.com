@@ -1,10 +1,9 @@
 ---
 import "@styles/blogLayout.css";
-const { className } = Astro.props;
+const { className, defaultGridColumn } = Astro.props;
+// defaultGridColumn: "content" | "popout" | "inset-content" | "full" - default: "content"
 ---
 
-<div class:list={["blog-layout", className]}>
+<div class:list={["blog-layout", className, defaultGridColumn]}>
   <slot />
 </div>
-
-<style></style>

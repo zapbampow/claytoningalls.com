@@ -28,18 +28,27 @@ const pageTitle = "Blog";
 ---
 
 <FullScreenLayout title={pageTitle}>
-  <BlogLayout>
+  <BlogLayout defaultGridColumn="popout">
     <h1>{pageTitle}</h1>
     <ul class="blog-list">
       {
         page.data.map((post) => (
           <li>
-            <a href={`/${post.collection}/${post.slug}`}>
+            <a
+              href={`/${post.collection}/${post.slug}`}
+              class="flex flex-col h-full"
+            >
               <p class="post-type">
                 {singularize(post.collection).toUpperCase()}
               </p>
+
               <h2>{post.data.title}</h2>
-              <div class="flex align-center gap-4">
+
+              {post.data?.description && (
+                <p class="description">{post.data.description}</p>
+              )}
+
+              <div class="flex flex-col mt-auto">
                 {post.data.tags.length > 0 && (
                   <ul class="tag-list">
                     {post.data.tags.map((tag) => (
@@ -51,9 +60,6 @@ const pageTitle = "Blog";
                   {dayjs(post.data.publishedAt).format("MMM D, YYYY")}
                 </p>
               </div>
-              {post.data?.description && (
-                <p class="description">{post.data.description}</p>
-              )}
             </a>
           </li>
         ))
@@ -67,7 +73,8 @@ const pageTitle = "Blog";
     ul.blog-list {
       margin-block: 2rem;
       display: grid;
-      gap: 2rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 4rem;
 
       --radius: 0;
       --content-bg: hsl(0 0% 100% / 0.75);
@@ -84,6 +91,8 @@ const pageTitle = "Blog";
 
         .date {
           font-size: 0.75rem;
+          color: var(--text-faded);
+          margin-block-start: 0.5rem;
         }
 
         .description {
@@ -91,11 +100,9 @@ const pageTitle = "Blog";
           margin-block-start: 0.5rem;
         }
         h2 {
+          font-size: 1.5rem;
           text-wrap: pretty;
           transition: color 0.3s ease-in-out;
-        }
-        &:hover h2 {
-          /* color: var(--accent); */
         }
 
         &:before {
@@ -108,20 +115,22 @@ const pageTitle = "Blog";
           border-radius: 1rem;
           background-color: hsl(0 0% 100% / 0.05);
           border-top: 1px solid hsl(0 0% 100% / 0.1);
-          opacity: 0;
+          opacity: 1;
           z-index: -1;
           transition: opacity 0.3s ease-in-out;
         }
 
-        &:hover::before {
+        /* &:hover::before {
           opacity: 1;
-        }
+        } */
       }
     }
 
     ul.tag-list {
       display: flex;
+      flex-wrap: wrap;
       gap: 0.25rem;
+      margin-block-start: 0.5rem;
 
       & > li.tag {
         font-size: 0.75rem;
