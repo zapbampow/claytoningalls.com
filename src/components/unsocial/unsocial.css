@@ -1,21 +1,60 @@
+/* Blog Layout */
+.blog-layout.photo.unsocial-feed,
+.blog-layout.comment.unsocial-feed,
+.blog-layout.article.unsocial-feed,
+.blog-layout.link.unsocial-feed {
+    row-gap: 2rem;
+
+    >* {
+        padding-block: 1rem;
+    }
+
+}
+
+/* ELEMENTS */
 .comment,
 .photo,
 .article-preview,
 .article {
-    --radius: 0;
+    --radius: 6px;
     --content-bg: hsl(0 0% 100% / .75);
     --content-text: #331c51;
     --box-shadow: 3px 3px var(--accent);
 }
 
+.unsocial-feed article {
+    position: relative;
+
+    &:before {
+        content: "";
+        width: calc(100% + 2rem);
+        height: calc(100%);
+        position: absolute;
+        top: 0;
+        left: -1rem;
+        border-radius: 1rem;
+        background-color: hsl(0 0% 100% / 0.05);
+        border-top: 1px solid hsl(0 0% 100% / 0.1);
+        opacity: 1;
+        z-index: -1;
+        transition: opacity 0.3s ease-in-out;
+    }
+
+    .publishedDate {
+        color: var(--text-faded);
+    }
+
+    img {
+        border-radius: var(--radius);
+    }
+}
+
+
 /* COMMENT AND PHOTO TEXT CONTAINER */
 .comment-content,
 .photo-comment {
-    background-color: var(--content-bg);
-    box-shadow: var(--box-shadow);
-
     & * {
-        color: var(--content-text);
+        color: var(--text);
     }
 
     .date,
@@ -27,12 +66,17 @@
 
 /* COMMENT */
 .comment-content {
-    padding: 1rem;
     border-radius: var(--radius);
 }
 
 /* PHOTO */
 .photo {
+    .photo-content {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
     img {
         width: 100%;
         border-top-left-radius: var(--radius);
@@ -45,7 +89,6 @@
     }
 
     .photo-comment {
-        padding: 1rem;
         border-bottom-left-radius: var(--radius);
         border-bottom-right-radius: var(--radius);
     }
@@ -92,6 +135,7 @@
                 border: 1px solid var(--text);
                 padding: 0 .75rem;
                 border-radius: 1rem;
+                color: var(--text-faded);
             }
         }
 
@@ -104,12 +148,21 @@
 
     .read-btn {
         position: relative;
+        left: 4px;
         margin-block-start: auto;
         border: 1px solid var(--text);
         padding: .25rem 1rem;
         width: fit-content;
         font-size: 1rem;
+        border-radius: 4px;
+        margin-left: -4px;
         box-shadow: var(--box-shadow);
+        transition: all .1s ease;
+
+        &:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 var(--accent);
+        }
     }
 
 }

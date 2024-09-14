@@ -9,6 +9,8 @@ import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import SimplePagination from "@components/navigation/SimplePagination.astro";
 
+import "@styles/blogList.css";
+
 export const getStaticPaths = (async ({ paginate }) => {
   const articles = await getCollection("articles");
   const snippets = await getCollection("snippets");
@@ -69,93 +71,5 @@ const pageTitle = "Blog";
     <SimplePagination page={page} baseUrl="blog" />
   </BlogLayout>
 
-  <style>
-    ul.blog-list {
-      margin-block: 2rem;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 4rem;
-
-      --radius: 0;
-      --content-bg: hsl(0 0% 100% / 0.75);
-      --content-text: #331c51;
-      --box-shadow: 3px 3px var(--accent);
-
-      & > li {
-        position: relative;
-        border-left: 3px solid var(--accent);
-        padding-left: 8px;
-        .post-type {
-          font-size: 0.75rem;
-        }
-
-        .date {
-          font-size: 0.75rem;
-          color: var(--text-faded);
-          margin-block-start: 0.5rem;
-        }
-
-        .description {
-          font-size: 1rem;
-          margin-block-start: 0.5rem;
-        }
-        h2 {
-          font-size: 1.5rem;
-          text-wrap: pretty;
-          transition: color 0.3s ease-in-out;
-        }
-
-        &:before {
-          content: "";
-          width: calc(100% + 2rem);
-          height: calc(100% + 2rem);
-          position: absolute;
-          top: -1rem;
-          left: -1rem;
-          border-radius: 1rem;
-          background-color: hsl(0 0% 100% / 0.05);
-          border-top: 1px solid hsl(0 0% 100% / 0.1);
-          opacity: 1;
-          z-index: -1;
-          transition: opacity 0.3s ease-in-out;
-        }
-
-        /* &:hover::before {
-          opacity: 1;
-        } */
-      }
-    }
-
-    ul.tag-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.25rem;
-      margin-block-start: 0.5rem;
-
-      & > li.tag {
-        font-size: 0.75rem;
-        padding: 0 0.5rem;
-        border-radius: 1rem;
-        background-color: transparent;
-        border: 1px solid var(--text-faded);
-        color: var(--text-faded);
-        line-height: 0.85rem;
-      }
-    }
-
-    @media screen and (max-width: 700px) {
-      ul {
-        gap: 3rem;
-        margin-inline: 1rem;
-      }
-
-      li:before {
-        opacity: 1;
-      }
-
-      h2 {
-        color: var(--accent);
-      }
-    }
-  </style>
+  <style></style>
 </FullScreenLayout>

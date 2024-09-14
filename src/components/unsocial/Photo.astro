@@ -17,7 +17,7 @@ const date = dayjs(publishedAt).format("MMM D, YYYY");
     <img src={image?.url} alt={image?.alt} />
     <div class="photo-comment">
       <slot />
-      <p class="date">{date}</p>
+      <p class="publishedDate">{date}</p>
     </div>
   </div>
 </article>
