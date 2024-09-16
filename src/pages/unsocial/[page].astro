@@ -1,0 +1,49 @@
+---
+import type { GetStaticPaths } from "astro";
+import { getCollection } from "astro:content";
+
+import BlogLayout from "@layouts/BlogLayout.astro";
+import FullScreenLayout from "@layouts/FullScreenLayout.astro";
+import PostTypeSwitch from "@components/unsocial/PostTypeSwitch.astro";
+import dayjs from "dayjs";
+import SimplePagination from "@components/navigation/SimplePagination.astro";
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const posts = await getCollection("unsocial");
+  const ordered = posts.sort((a, b) => {
+    const dateA = dayjs(a.data.publishedAt).unix();
+    const dateB = dayjs(b.data.publishedAt).unix();
+    return dateB - dateA;
+  });
+  return paginate(ordered, { pageSize: 2 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+const pageTitle = "Unsocial";
+---
+
+<FullScreenLayout title={pageTitle}>
+  <BlogLayout className="unsocial-feed photo comment article link">
+    <h1>{pageTitle}</h1>
+    {
+      page.data.map((post, index) => {
+        return (
+          <PostTypeSwitch post={post} isPreview={true}>
+            {/* <Content /> */}
+          </PostTypeSwitch>
+        );
+      })
+    }
+    <SimplePagination page={page} baseUrl="unsocial" />
+  </BlogLayout>
+</FullScreenLayout>
+
+<style>
+  .blog-layout.photo,
+  .blog-layout.comment,
+  .blog-layout.article,
+  .blog-layout.link {
+    row-gap: 3rem;
+  }
+</style>

@@ -4,9 +4,10 @@ import { z } from "astro:content";
 import dayjs from "dayjs";
 
 type Data = z.infer<typeof UnsocialSchema>;
-type Props = { data: Data };
+type Props = { data: Data; body?: string };
 
 const {
+  body,
   data: { publishedAt, image },
 } = Astro.props;
 const date = dayjs(publishedAt).format("MMM D, YYYY");
@@ -16,7 +17,7 @@ const date = dayjs(publishedAt).format("MMM D, YYYY");
   <div class="photo-content">
     <img src={image?.url} alt={image?.alt} />
     <div class="photo-comment">
-      <slot />
+      {body && <p class="photo-body">{body}</p>}
       <p class="publishedDate">{date}</p>
     </div>
   </div>
