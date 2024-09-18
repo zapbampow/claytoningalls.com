@@ -27,7 +27,7 @@ const pageTitle = "Unsocial";
   <BlogLayout className="unsocial-feed photo comment article link">
     <h1>{pageTitle}</h1>
     {
-      page.data.map((post, index) => {
+      page.data.map((post) => {
         return (
           <PostTypeSwitch post={post} isPreview={true}>
             {/* <Content /> */}

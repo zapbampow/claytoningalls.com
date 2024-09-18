@@ -191,13 +191,13 @@ import VisibleGrid from "./VisibleGrid.astro";
   const menuBtn = document.querySelector(".main-nav-btn");
 
   function toggle() {
-    navList.classList.toggle("open");
-    menuIcon.classList.toggle("hide");
-    closeIcon.classList.toggle("hide");
+    navList?.classList.toggle("open");
+    menuIcon?.classList.toggle("hide");
+    closeIcon?.classList.toggle("hide");
   }
 
   // Toggle the nav list when clicking the nav button
-  menuBtn.addEventListener("click", () => {
+  menuBtn?.addEventListener("click", () => {
     toggle();
   });
 
@@ -206,9 +206,9 @@ import VisibleGrid from "./VisibleGrid.astro";
     "click",
     function (event) {
       if (
-        !event.target.closest(".nav-list") &&
-        navList.classList.contains("open") &&
-        !event.target.closest(".main-nav-btn")
+        !(event?.target as Element)?.closest(".nav-list") &&
+        navList?.classList.contains("open") &&
+        !(event?.target as Element)?.closest(".main-nav-btn")
       ) {
         toggle();
       }

@@ -46,7 +46,7 @@ const pageTitle = "Blog";
 
               <h2>{post.data.title}</h2>
 
-              {post.data?.description && (
+              {"description" in post.data && (
                 <p class="description">{post.data.description}</p>
               )}
 
