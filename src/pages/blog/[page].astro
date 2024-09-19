@@ -20,7 +20,7 @@ export const getStaticPaths = (async ({ paginate }) => {
     const dateB = dayjs(b.data.publishedAt).unix();
     return dateB - dateA;
   });
-  return paginate(posts, { pageSize: 4 });
+  return paginate(posts, { pageSize: 10 });
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
