@@ -1,0 +1,13 @@
+---
+const { id, class: className, ...rest } = Astro.props;
+---
+
+<button id={id} class:list={["closeModalBtn", className]} {...rest}>
+  <slot />
+</button>
+
+<style>
+  button {
+    color: var(--text);
+  }
+</style>

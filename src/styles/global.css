@@ -1,6 +1,8 @@
 :root {
+    --main-font-family: "Figtree", Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
     --accent: #ff5d5d;
     --text: hsl(267 31% 83%);
+    --contrast-text: #2d194a;
     --text-faded: hsl(267 31% 83% / .65);
     --background-gradient: linear-gradient(#331c51,
             #2d194a,
@@ -10,6 +12,14 @@
             #180e2f,
             #150928,
             #110322);
+    --light-gradient: linear-gradient(to bottom right, hsl(266, 49%, 51%),
+            hsl(264, 49%, 48%),
+            hsl(262, 49%, 45%),
+            hsl(261, 50%, 42%),
+            hsl(259, 52%, 39%),
+            hsl(258, 54%, 36%),
+            hsl(263, 63%, 33%),
+            hsl(267, 84%, 30%));
     --accent-light: 224, 204, 250;
     --accent-dark: 49, 10, 101;
     --accent-gradient: linear-gradient(45deg,

@@ -1,0 +1,162 @@
+---
+import { Icon } from "astro-icon/components";
+
+import "@styles/blogList.css"
+
+import Modal from "./baseComponents/Modal.astro";
+import OpenButton from "./baseComponents/OpenButton.astro";
+import CloseButton from "./baseComponents/CloseButton.astro";
+
+import Search from "astro-pagefind/components/Search";
+---
+
+<OpenButton id="openSearch" class="text-xl"
+  >
+  <Icon name="tabler:search" />
+  </OpenButton
+>
+<Modal openId="openSearch" closeId="closeSearch">
+  <CloseButton
+    id="closeSearch"
+    class="fixed top-0 right-0 rounded-full p-2 m-1"
+  >
+    <Icon name="tabler:x" stroke-linecap="butt" />
+  </CloseButton>
+
+  <div class="search-wrapper">
+    <Search
+      id="search"
+      className="pagefind-ui"
+      uiOptions={{ showImages: false }}
+    />
+  </div>
+</Modal>
+
+<style is:inline>
+  .search-wrapper {
+    max-width: 50ch;
+    height: 50ch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-block-start: 1.75rem;
+
+    &:before {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100px;
+
+    }
+
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-font: var(--main-font-family);
+    --search-content-width: calc(100% - 2rem);
+    
+
+    & .pagefind-ui__form {
+        margin-inline: auto;
+
+    }
+    .pagefind-ui__form::before {
+      position: fixed;
+      top: 3.7rem;
+      left: 2rem;
+    }
+
+    /* Search bar  */
+    & .pagefind-ui__search-input {
+        position: fixed;
+        top: 2.5rem;
+        left: 1rem;
+        right: 1rem;
+        width: calc(100% - 2rem);
+        color: var(--contrast-text);
+        z-index: 2;
+
+        &:focus-visible, &:focus {
+            outline: none;
+            border: 2px solid transparent;
+            background: linear-gradient(white, white) padding-box, var(--light-gradient) border-box;
+            p
+        }
+
+        
+    }
+
+    /* Clear button */
+    & .pagefind-ui__search-clear {
+      position: fixed !important;
+      top: 2.65rem;
+      right: 2rem;
+      color: var(--contrast-text);
+      z-index;
+    }
+
+    & .pagefind-ui__drawer {
+      position: absolute;
+      top: 15px;
+      left: 0;
+      width: 100%;
+      height: 543px;
+      overflow: scroll;
+        margin-block-start: 2rem;
+        padding-block-end: 2rem;
+        /* margin-inline: auto;
+        width: var(--search-content-width); */
+    }
+
+    & .pagefind-ui__results-area {
+      padding-inline: 1.5rem;
+    }
+
+    & .pagefind-ui__results > li + li {
+      margin-block-start: 3rem;
+    }
+
+    & .pagefind-ui__result {
+      position: relative;
+      z-index: 1;
+      border-top: none !important;
+      padding: 0 !important;
+
+      &::before {
+        content: "";
+        width: calc(100% + 2rem);
+        height: calc(100% + 2rem);
+        position: absolute;
+        top: -1rem;
+        left: -1rem;
+        border-radius: 1rem;
+        background-color: hsl(0 0% 100% / 0.05);
+        border-top: 1px solid hsl(0 0% 100% / 0.1);
+        opacity: 1;
+        z-index: -1;
+        transition: opacity 0.3s ease-in-out;
+      } 
+    }
+
+    & .pagefind-ui__result-inner {
+      margin-top: 0 !important;
+      padding-inline-start: .5rem;
+      border-left: 3px solid var(--accent);
+    }
+
+    & .pagefind-ui__result-title {
+      font-size: 1.5rem !important;
+      line-height: 1.75rem !important;
+    }
+
+    & .pagefind-ui__result-excerpt {
+      line-height: 1.1rem !important;
+    }
+
+
+
+  [data-icon="tabler:search"] {
+    path {
+        stroke-width: 2.75;
+    }
+  }
+</style>
