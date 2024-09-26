@@ -14,6 +14,7 @@ const articlesCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     publishedAt: z.date(),
+    updatedAt: z.date().optional(),
     description: z.string().optional(),
     author: z.string().optional(),
     img: z
