@@ -24,7 +24,10 @@ const { modalClass, openButtonClass, closeButtonClass, ...rest } = Astro.props;
   </button>
 </dialog>
 
-<script define:vars={{ modalClass, openButtonClass, closeButtonClass }}>
+<script
+  is:inline
+  define:vars={{ modalClass, openButtonClass, closeButtonClass }}
+>
   const openButton = document.querySelector(`.openButton`);
   const closeButton = document.querySelector(`.closeButton`);
   const modal = document.querySelector(`.modal`);

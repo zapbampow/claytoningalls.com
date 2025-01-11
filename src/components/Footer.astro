@@ -18,7 +18,7 @@ const social = [
 <footer>
   <ul>
     {
-      social.map(({ name, url, icon }, index) => (
+      social.map(({ url, icon }, index) => (
         <li>
           <a href={url} target="_blank">
             <Icon name={`tabler:${icon}`} stroke-linecap="butt" />

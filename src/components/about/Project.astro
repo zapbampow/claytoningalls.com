@@ -6,8 +6,7 @@ type Props = {
 };
 
 const { project } = Astro.props;
-const { title, shortDescription, longDescription, img, links, filename } =
-  project;
+const { title, shortDescription, img, filename } = project;
 ---
 
 <a href={`/about/projects/${filename}`} class="project-btn" aria-role="button">

@@ -1,7 +1,5 @@
 ---
-import { Icon } from "astro-icon/components";
-
-const { modalClass, openId, closeId, ...rest } = Astro.props;
+const { modalClass, openId, closeId } = Astro.props;
 ---
 
 <dialog class:list={[`modal`, modalClass]}>
@@ -10,7 +8,7 @@ const { modalClass, openId, closeId, ...rest } = Astro.props;
   </div>
 </dialog>
 
-<script define:vars={{ modalClass, openId, closeId }}>
+<script is:inline define:vars={{ modalClass, openId, closeId }}>
   const openButton = document.querySelector(
     `.openModalBtn${openId && `#${openId}`}`
   );

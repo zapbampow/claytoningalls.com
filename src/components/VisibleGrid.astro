@@ -20,7 +20,7 @@ const gridBorder = `1px solid hsl(0 0% 80% / ${opacity})`;
 
 <div class="visible-grid">
   {
-    Array.from({ length: columns * rows }).map((item, i) => {
+    Array.from({ length: columns * rows }).map((_, i) => {
       return (
         <div
           class:list={[
