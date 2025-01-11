@@ -9,10 +9,20 @@ import Navigation from "./Navigation.astro";
 </header>
 
 <script>
-  window.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
-    // header?.classList.toggle('sticky', window.scrollY > 100);
-  });
+  // function checkForMainScrollbar() {
+  //   const main = document.querySelector("main");
+  //   if (!main || !main.scrollHeight || !main?.clientHeight) return;
+
+  //   const hasScrollBar = main?.scrollHeight > main?.clientHeight;
+  //   if (hasScrollBar) {
+  //     console.log("hit");
+  //     main.classList.add("has-scrollbar");
+  //   }
+  // }
+
+  // window.onload = () => {
+  //   checkForMainScrollbar();
+  // };
 </script>
 
 <style>
@@ -30,10 +40,7 @@ import Navigation from "./Navigation.astro";
     z-index: 100;
   }
 
-  /* header.sticky {
-        position: sticky;
-        top: 0;
-        left: 0;
-        background: hsla(0 0% 0%);
-    } */
+  header:has(~ main.has-scrollbar) nav {
+    padding-right: 1rem;
+  }
 </style>
