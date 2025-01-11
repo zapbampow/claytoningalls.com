@@ -4,7 +4,7 @@ title: "Article 1"
 publishedAt: 2024-09-08
 description: "Reprehenderit exercitation et occaecat cupidatat magna qui amet eu occaecat sint velit. Culpa do ullamco adipisicing eiusmod dolor voluptate voluptate reprehenderit veniam ad amet officia ipsum qui."
 image: {
-    url: '/highschool.jpeg',
+    url: '/images/highschool.jpeg',
     alt: 'image of a hard drive'
 }
 tags: ['test', 'test1', 'test2']
