@@ -9,20 +9,20 @@ import Navigation from "./Navigation.astro";
 </header>
 
 <script>
-  // function checkForMainScrollbar() {
-  //   const main = document.querySelector("main");
-  //   if (!main || !main.scrollHeight || !main?.clientHeight) return;
+  function checkForMainScrollbar() {
+    const main = document.querySelector("main");
+    if (!main || !main.scrollHeight || !main?.clientHeight) return;
 
-  //   const hasScrollBar = main?.scrollHeight > main?.clientHeight;
-  //   if (hasScrollBar) {
-  //     console.log("hit");
-  //     main.classList.add("has-scrollbar");
-  //   }
-  // }
+    const hasScrollBar = main?.scrollHeight > main?.clientHeight;
+    if (hasScrollBar) {
+      console.log("hit");
+      main.classList.add("has-scrollbar");
+    }
+  }
 
-  // window.onload = () => {
-  //   checkForMainScrollbar();
-  // };
+  window.onload = () => {
+    checkForMainScrollbar();
+  };
 </script>
 
 <style>
