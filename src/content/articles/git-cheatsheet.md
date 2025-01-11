@@ -68,6 +68,18 @@ git stash --include-untracked
 ```
 git stash -u
 ```
+### Ignore already committed content
+Use case: You have a `.vscode` directory on your local machine, but it wasn't in `.gitignore` when you made your first commit. You want to stop tracking it.
+
+```
+git rm -r --cached <your directory>
+```
+
+The `-r` option causes the removal of all files under your directory.
+
+The `--cached` option causes the files to only be removed from git's index, not your working copy. By default `git rm <file>` would delete `<file>`.
+
+[source](https://stackoverflow.com/a/1330097/9301652)
 ## Configuration
 ### Configure git to always push new local branches to remote
 ```
