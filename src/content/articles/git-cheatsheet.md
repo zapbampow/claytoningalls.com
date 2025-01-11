@@ -1,64 +1,74 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2024-09-25
+updatedAt: 2025-01-11
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
 ---
 
-## git log
-### Condensed log
-`git log --oneline`
-
-### List commits from single person
-**Exact name match**
-`git log --author="authorName"`
-
-**Fuzzy match**
-`git log --author=partialName`
-
-**Case insensitive**
-Add the `-i`  flag to either of the above commands
-`git log --author=allLowerOrUpperCase -i`
-
-## Pushing and Pulling 
-### Pulling changes from remote when you have changes on your current branch
-1. `git pull --rebase`
-	- If there are no conflicts you are finished.
-	- Using `--rebase` keeps the commit history clean by adding the pulled commits to the commit history when they happened, instead of adding a merge commit
-
-2. If there are conflicts, then run the following commands
-```bash
-git rebase --abort
-git pull
+## Find Stuff
+### Show a specific commit
+```
+git show <revhash>
 ```
 
-3. Then handle conflicts in whatever way you prefer.
-
-## Handling current changes
-
-### Add current changes to last commit
-This will add changes to the most recent commit and keep that commit's message.
-```bash
-git add .
-git commit --amend --no-edit
+### Show commits for a specific file
 ```
-### Clear all current changes
-**Only tracked files**
-Returns all tracked files to the previous commit
-`git restore .`
+git log -p <pathToFile>
+```
+```
+git log --follow <pathToFile>
+```
+### Find a branch with only a partial branch name
+```
+git branch --list "*<partial-name>*"
+```
 
-**Tracked and untracked files**
-Returns all tracked files to the previous commit
-Removes all new, untracked files
-```bash
+Same as above, but includes remote branches as well. In other words, it returns more results.
+```
+git branch --all | grep -i <partial-name>
+```
+### Show the current branch name
+```
+git branch --show-current 
+```
+Why would I want this? My terminal shows me the branch name, as does VS Code.
+Sometimes the branch name is so long that it is truncated and I just can't remember it. It also makes it super easy to copy the branch name
+### Check whether one branch has been merged into another branch
+```
+git branch --merged
+```
+This lists all the branches merged into the current branch.  It will look something like this:
+```
+feature/search-posts
+bug/search-button-does-nothing
+some-other-branch-name
+```
+
+If the branch you are wondering about is in the list, then it has been merged into the current branch.
+
+Note: without any other flags this will not return remote branches that have been merged. So you may want to checkout the branch in question or `git fetch origin branchName` in order to ensure it is local first.
+## Undoing Work
+### Discard unstaged changes in a file:
+```
+git restore -- <file_path> <file_path_2>
+```
+### Clear/Delete all unstaged changes
+```
 git restore .
-git clean --force
 ```
-
-
-
-## Resources
-- [Oh shit git](https://ohshitgit.com/)
-- [On undoing, fixing, or removing commits in git](https://sethrobertson.github.io/GitFixUm/fixup.html)
-- [Git restore all unstaged and untracked files back to their latest commit](https://nickjanetakis.com/blog/git-restore-all-unstaged-and-untracked-files-back-to-their-latest-commit)
+### Unstage Everything in staging
+```
+git reset
+```
+### Stash all files in the working directory, including untracked files, like newly created files or .gitignore
+```
+git stash --include-untracked
+```
+```
+git stash -u
+```
+## Configuration
+### Configure git to always push new local branches to remote
+```
+git config push.autoSetupRemote true 
