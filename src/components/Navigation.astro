@@ -2,11 +2,25 @@
 import { Icon } from "astro-icon/components";
 import VisibleGrid from "./VisibleGrid.astro";
 import SearchModal from "./modal/SearchModal.astro";
+
+const pathname = new URL(Astro.request.url).pathname;
+const currentPath = pathname.slice(1); // remove the first "/"
+
+function isActive(page: string): boolean {
+  const pathArr = currentPath.split("/");
+  if (page !== "blog") {
+    return pathArr.includes(page);
+  }
+
+  // check if pathArr includes any of the pages
+  const pages = ["snippets", "articles", page];
+  return pages.some((p) => pathArr.includes(p));
+}
 ---
 
 <ul class="nav-list">
   <li>
-    <a class="home" href="/">
+    <a class={`home ${isActive("home") ? "active" : ""}`} href="/">
       <span>
         <Icon name={`tabler:home`} stroke-linecap="butt" />
       </span>
@@ -20,7 +34,7 @@ import SearchModal from "./modal/SearchModal.astro";
     </div>
   </li>
   <li>
-    <a href="/about/">About</a>
+    <a href="/about/" class={`${isActive("about") ? "active" : ""}`}>About</a>
     <div class="top-right-grid">
       <VisibleGrid
         columns={60}
@@ -29,7 +43,9 @@ import SearchModal from "./modal/SearchModal.astro";
       />
     </div>
   </li>
-  <li><a href="/blog/">Blog</a></li>
+  <li>
+    <a href="/blog/" class={`${isActive("blog") ? "active" : ""}`}>Blog</a>
+  </li>
   <!-- <li><a href="/unsocial/">Unsocial</a></li> -->
   <li class="leading-9"><SearchModal /></li>
 </ul>
@@ -76,6 +92,11 @@ import SearchModal from "./modal/SearchModal.astro";
   }
   li a:not(.home) {
     padding: 0 1rem;
+  }
+
+  li a.active:not(.home) {
+    color: var(--accent);
+    font-weight: 600;
   }
 
   .top-right-grid,
