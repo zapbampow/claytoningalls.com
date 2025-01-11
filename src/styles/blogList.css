@@ -74,16 +74,13 @@ ul.tag-list {
 }
 
 @media screen and (max-width: 700px) {
-    ul {
+    .blog-list ul {
         gap: 3rem;
         margin-inline: 1rem;
     }
 
-    li:before {
+    .blog-list li:before {
         opacity: 1;
     }
 
-    h2 {
-        color: var(--accent);
-    }
 }
