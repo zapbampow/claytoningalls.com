@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-01-11
+updatedAt: 2025-01-13
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -35,10 +35,33 @@ git branch --show-current
 Why would I want this? My terminal shows me the branch name, as does VS Code.
 Sometimes the branch name is so long that it is truncated and I just can't remember it. It also makes it super easy to copy the branch name
 ### Check whether one branch has been merged into another branch
+#### Option 1: My favorite
+
+This is my favorite option because it checks all branches (remote and local) and simply returns a boolean-like response
 ```
+git branch --all --merged production | grep -q featureBranchName && echo "MERGED" || echo "NOT MERGED"
+```
+Change `production` to the "parent" branch name and "featureBranchName" to the feature.
+
+#### Option 2
+Similar, but you need to have both branches fetched to your machine
+```
+git merge-base --is-ancestor featureBranch production && echo "merged" || echo "not merged"
+```
+
+#### Option 3
+get a list of branches response
+```
+# returns only locally fetched branches
 git branch --merged
+
+# returns local and remote branches
+git branch -a --merged
+
+# returns only remote branches
+git branch -r --merged
 ```
-This lists all the branches merged into the current branch.  It will look something like this:
+Option 3 spits out a list that looks something like this:
 ```
 feature/search-posts
 bug/search-button-does-nothing
@@ -47,7 +70,7 @@ some-other-branch-name
 
 If the branch you are wondering about is in the list, then it has been merged into the current branch.
 
-Note: without any other flags this will not return remote branches that have been merged. So you may want to checkout the branch in question or `git fetch origin branchName` in order to ensure it is local first.
+
 ## Undoing Work
 ### Discard unstaged changes in a file:
 ```
