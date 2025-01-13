@@ -158,6 +158,11 @@ code {
         monospace;
 }
 
+p>code {
+    background: #24292e;
+    padding: .25rem .5rem;
+}
+
 h1,
 h2,
 h3,
