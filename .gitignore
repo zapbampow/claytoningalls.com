@@ -4,6 +4,9 @@ TODO.md
 # build output
 dist/
 
+# old build output
+.build/oldBuild
+
 # generated types
 .astro/
 

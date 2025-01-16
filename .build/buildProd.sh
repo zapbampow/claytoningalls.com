@@ -22,4 +22,4 @@ astro check && astro build
 
 # Ensure viteDestination exists and copy dist contents to it
 mkdir -p "$BUILD_DESTINATION"
-cp -r "$DIST_DIR"/* "$VITE_DESTINATION"
+cp -r "$DIST_DIR"/* "$BUILD_DESTINATION"
