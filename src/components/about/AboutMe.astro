@@ -63,11 +63,16 @@
     display: none;
   }
 
-  nav ul {
+  .about-nav ul {
+    list-style: none;
     display: flex;
     flex-direction: column;
     gap: 1.25rem;
     margin-block-start: 2.5rem;
+
+    > li {
+      margin-left: 0;
+    }
   }
   .nav-link {
     display: flex;

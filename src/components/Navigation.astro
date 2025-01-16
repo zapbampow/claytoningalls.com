@@ -64,8 +64,9 @@ function isActive(page: string): boolean {
 </div>
 
 <style>
-  ul {
+  .nav-list {
     display: flex;
+    align-items: center;
     gap: 1rem;
     padding: 1rem;
     list-style: none;
@@ -77,24 +78,24 @@ function isActive(page: string): boolean {
     z-index: 100;
   }
 
-  li {
+  .nav-list li {
     padding: 0;
     position: relative;
   }
 
-  li:first-child {
+  .nav-list li:first-child {
     margin-inline-end: auto;
   }
 
-  li a {
+  .nav-list li a {
     text-decoration: none;
     color: inherit;
   }
-  li a:not(.home) {
+  .nav-list li a:not(.home) {
     padding: 0 1rem;
   }
 
-  li a.active:not(.home) {
+  .nav-list li a.active:not(.home) {
     color: var(--accent);
     font-weight: 600;
   }

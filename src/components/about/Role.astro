@@ -40,6 +40,7 @@ const { title, company, date, description, technology, url } = Astro.props;
   .role {
     position: relative;
     z-index: 1;
+    margin-left: 0;
   }
   .role:before {
     content: "";
@@ -59,7 +60,7 @@ const { title, company, date, description, technology, url } = Astro.props;
     opacity: 1;
   }
   h3 {
-    transition: color .3s;
+    transition: color 0.3s;
   }
   .role:hover h3 {
     color: var(--accent);
@@ -79,11 +80,13 @@ const { title, company, date, description, technology, url } = Astro.props;
       .role-description {
         display: grid;
         gap: 0.75rem;
+        list-style: none;
 
         p,
         li {
           font-size: 1.1rem;
           line-height: 1.5rem;
+          margin-left: 0;
         }
       }
     }
@@ -93,6 +96,7 @@ const { title, company, date, description, technology, url } = Astro.props;
     display: flex;
     gap: 0.5rem 0.75rem;
     flex-wrap: wrap;
+    list-style: none;
 
     li {
       display: inline-block;
@@ -101,6 +105,7 @@ const { title, company, date, description, technology, url } = Astro.props;
       border-radius: 50px;
       color: #d8bbfe;
       font-size: 0.8rem;
+      margin-left: 0;
     }
   }
 

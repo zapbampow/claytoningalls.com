@@ -68,8 +68,13 @@ import Project from "./Project.astro";
 
   .roles,
   .projects {
+    list-style: none;
     display: grid;
     gap: 3rem;
+
+    > li {
+      margin-left: 0;
+    }
   }
 
   @media screen and (min-width: 1024px) {

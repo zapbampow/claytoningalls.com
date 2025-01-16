@@ -1,7 +1,7 @@
 :root {
     --main-font-family: "Figtree", Avenir, Montserrat, Corbel, 'URW Gothic', source-sans-pro, sans-serif;
     --accent: #ff5d5d;
-    --text: hsl(267 31% 83%);
+    --text: hsl(267 31% 90%);
     --contrast-text: #2d194a;
     --text-faded: hsl(267 31% 83% / .65);
     --background-gradient: linear-gradient(#331c51,
@@ -60,11 +60,7 @@ dd {
 /* Basic list styles */
 ul,
 ol {
-    list-style: inside;
-
-    li {
-        margin-left: 1rem;
-    }
+    list-style: none;
 }
 
 /* Remove list styles on ul, ol elements with a list role, which suggests default styling will be removed */
