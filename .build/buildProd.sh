@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define paths
-BUILD_DESTINATION="/etc/www/claytoningalls.com"
+BUILD_DESTINATION="/var/www/claytoningalls.com"
 OLD_BUILD="/home/clayton/claytoningalls.com/.build/oldBuild"
 DIST_DIR="/home/clayton/claytoningalls.com/.build/dist"
 
