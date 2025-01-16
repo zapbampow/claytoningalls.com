@@ -2,8 +2,8 @@
 
 # Define paths
 BUILD_DESTINATION="/etc/www/claytoningalls.com"
-OLD_BUILD="/Users/claytoningalls/Documents/Code/testCode/viteTest/oldBuild"
-DIST_DIR="/Users/claytoningalls/Documents/Code/testCode/viteTest/dist"
+OLD_BUILD="/home/clayton/claytoningalls.com/.build/oldBuild"
+DIST_DIR="/home/clayton/claytoningalls.com/.build/dist"
 
 # Remove and recreate oldBuild directory
 rm -rf "$OLD_BUILD"
