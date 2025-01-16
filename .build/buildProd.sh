@@ -3,7 +3,7 @@
 # Define paths
 BUILD_DESTINATION="/var/www/claytoningalls.com"
 OLD_BUILD="/home/clayton/claytoningalls.com/.build/oldBuild"
-DIST_DIR="/home/clayton/claytoningalls.com/.build/dist"
+DIST_DIR="/home/clayton/claytoningalls.com/dist"
 
 # Remove and recreate oldBuild directory
 rm -rf "$OLD_BUILD"
