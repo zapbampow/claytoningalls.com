@@ -34,7 +34,9 @@ function isActive(page: string): boolean {
     </div>
   </li>
   <li>
-    <a href="/about/" class={`${isActive("about") ? "active" : ""}`}>About</a>
+    <a href="/about/" class={`about-link ${isActive("about") ? "active" : ""}`}
+      >About</a
+    >
     <div class="top-right-grid">
       <VisibleGrid
         columns={60}
@@ -44,7 +46,9 @@ function isActive(page: string): boolean {
     </div>
   </li>
   <li>
-    <a href="/blog/" class={`${isActive("blog") ? "active" : ""}`}>Blog</a>
+    <a href="/blog/" class={`blog-link ${isActive("blog") ? "active" : ""}`}
+      >Blog</a
+    >
   </li>
   <!-- <li><a href="/unsocial/">Unsocial</a></li> -->
   <li class="leading-9"><SearchModal /></li>
@@ -147,6 +151,7 @@ function isActive(page: string): boolean {
   @media screen and (max-width: 700px) {
     .main-nav-btn {
       display: block;
+      font-size: 1.5em;
     }
 
     ul {
@@ -175,7 +180,7 @@ function isActive(page: string): boolean {
       bottom: 0;
       border-radius: 0.5rem;
       background: linear-gradient(#1d1136, #180e2f, #150928, #110322);
-      opacity: 0.9;
+      opacity: 0.95;
     }
 
     li:first-child {
@@ -187,12 +192,24 @@ function isActive(page: string): boolean {
       padding: 0.5rem 0;
     }
 
-    ul.open {
-      width: 15ch;
-      height: 250px;
+    ul.nav-list.open {
+      width: 100vw;
+      height: 100vh;
       opacity: 1;
       scale: 1;
       pointer-events: all;
+      right: 0;
+      top: 0;
+      align-items: flex-start;
+
+      &::before {
+        border-radius: 0;
+      }
+    }
+
+    .nav-list li a {
+      padding: 0.5rem 0 !important;
+      font-size: 1.5rem;
     }
 
     .top-left-grid,

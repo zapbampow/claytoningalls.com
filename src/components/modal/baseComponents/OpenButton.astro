@@ -14,4 +14,11 @@ const { class: className, ...rest } = Astro.props;
     background: transparent;
     color: inherit;
   }
+
+  @media screen and (max-width: 700px) {
+    button {
+      margin: 0.5rem 0;
+      font-size: 1.5rem;
+    }
+  }
 </style>
