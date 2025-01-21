@@ -1,4 +1,4 @@
-ul.blog-list {
+.blog-layout ul.blog-list {
     margin-block: 2rem;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -13,6 +13,11 @@ ul.blog-list {
         position: relative;
         border-left: 3px solid var(--accent);
         padding-left: 8px;
+
+        a {
+            text-decoration: none;
+            color: var(--text);
+        }
 
         .post-type {
             font-size: 0.75rem;
@@ -33,6 +38,7 @@ ul.blog-list {
             font-size: 1.5rem;
             text-wrap: pretty;
             transition: color 0.3s ease-in-out;
+            margin-block-start: 0;
         }
 
         &:before {
@@ -46,21 +52,18 @@ ul.blog-list {
             background-color: hsl(0 0% 100% / 0.05);
             border-top: 1px solid hsl(0 0% 100% / 0.1);
             opacity: 1;
-            z-index: -1;
+            z-index: 1;
             transition: opacity 0.3s ease-in-out;
         }
-
-        /* &:hover::before {
-        opacity: 1;
-      } */
     }
 }
 
-ul.tag-list {
+.blog-layout ul.tag-list {
     display: flex;
     flex-wrap: wrap;
     gap: 0.25rem;
     margin-block-start: 0.5rem;
+    padding-inline-start: 0;
 
     &>li.tag {
         font-size: 0.75rem;
