@@ -1,6 +1,6 @@
 ---
 title: 'How to hide YouTube Shorts, Playables, and Breaking News'
-descriptions: "I rediscovered Greasemonkey years after I learned to code and was able to tweak YouTube to hide the sections I don't want to see"
+description: "I rediscovered Greasemonkey and hid stuff I don't like on YouTube"
 publishedAt: 2025-01-21
 updatedAt: 2025-01-21
 tags: ['snippet', 'userscripts', 'greasemonkey', 'tampermonkey', 'violentmonkey']
