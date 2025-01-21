@@ -163,12 +163,12 @@ p:has(img) {
 
 .blog-layout ul {
     list-style-type: disc;
-    padding-inline-start: 1rem;
+    padding-inline: 1rem;
 }
 
 .blog-layout ol {
     list-style-type: decimal;
-    padding-inline-start: 1rem;
+    padding-inline: 1rem;
 }
 
 .blog-layout {
