@@ -17,7 +17,7 @@ Greasemonkey allowed you to change the way a website worked or looked. You could
 
 I used it for a few things like tweaking Facebook's interface, but it was lost in time and space for me. I hadn't thought about it in years...until yesterday.
 
-I said to myself, "I wish I could just turn all this stuff I don't care about (namely Shorts and Playables) and only see only video thumbnails. (pause) Wasn't there a somthing-monkey extension I used to use?"
+I said to myself, "I wish I could just turn off all this stuff I don't care about (namely Shorts and Playables) and see only video thumbnails. (pause) Wasn't there a somthing-monkey extension I used to use?"
 
 It turns out Greasemonkey is still around. There is a more popular [TamperMonkey](https://www.tampermonkey.net/) and another option, [ViolentMonkey](https://violentmonkey.github.io/). These latter 2 work in Brave (Chrome), which is my daily driver browser now.
 
