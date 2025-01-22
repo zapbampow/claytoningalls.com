@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-01-13
+updatedAt: 2025-01-22
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -8,28 +8,28 @@ tags: ["git"]
 
 ## Find Stuff
 ### Show a specific commit
-```
+```sh
 git show <revhash>
 ```
 
 ### Show commits for a specific file
-```
+```sh
 git log -p <pathToFile>
 ```
-```
+```sh
 git log --follow <pathToFile>
 ```
 ### Find a branch with only a partial branch name
-```
+```sh
 git branch --list "*<partial-name>*"
 ```
 
 Same as above, but includes remote branches as well. In other words, it returns more results.
-```
+```sh
 git branch --all | grep -i <partial-name>
 ```
 ### Show the current branch name
-```
+```sh
 git branch --show-current 
 ```
 Why would I want this? My terminal shows me the branch name, as does VS Code.
@@ -38,20 +38,20 @@ Sometimes the branch name is so long that it is truncated and I just can't remem
 #### Option 1: My favorite
 
 This is my favorite option because it checks all branches (remote and local) and simply returns a boolean-like response
-```
+```sh
 git branch --all --merged production | grep -q featureBranchName && echo "MERGED" || echo "NOT MERGED"
 ```
 Change `production` to the "parent" branch name and "featureBranchName" to the feature.
 
 #### Option 2
 Similar, but you need to have both branches fetched to your machine
-```
+```sh
 git merge-base --is-ancestor featureBranch production && echo "merged" || echo "not merged"
 ```
 
 #### Option 3
 get a list of branches response
-```
+```sh
 # returns only locally fetched branches
 git branch --merged
 
@@ -73,28 +73,28 @@ If the branch you are wondering about is in the list, then it has been merged in
 
 ## Undoing Work
 ### Discard unstaged changes in a file:
-```
+```sh
 git restore -- <file_path> <file_path_2>
 ```
 ### Clear/Delete all unstaged changes
-```
+```sh
 git restore .
 ```
 ### Unstage Everything in staging
-```
+```sh
 git reset
 ```
 ### Stash all files in the working directory, including untracked files, like newly created files or .gitignore
-```
+```sh
 git stash --include-untracked
 ```
-```
+```sh
 git stash -u
 ```
 ### Ignore already committed content
 Use case: You have a `.vscode` directory on your local machine, but it wasn't in `.gitignore` when you made your first commit. You want to stop tracking it.
 
-```
+```sh
 git rm -r --cached <your directory>
 ```
 
@@ -105,5 +105,12 @@ The `--cached` option causes the files to only be removed from git's index, no
 [source](https://stackoverflow.com/a/1330097/9301652)
 ## Configuration
 ### Configure git to always push new local branches to remote
-```
+```sh
 git config push.autoSetupRemote true 
+```
+
+### Prompt with automatically corrected git commands when you mistype them
+For more options or info, check out this [in depth article about autocorrent](https://blog.gitbutler.com/why-is-git-autocorrect-too-fast-for-formula-one-drivers/)
+```sh
+git config --global help.autocorrect prompt
+```
