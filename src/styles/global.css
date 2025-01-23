@@ -221,3 +221,8 @@ a {
 .align-center {
     align-items: center;
 }
+
+/* VIEW TRANSITIONS */
+@view-transition {
+    navigation: auto;
+}
