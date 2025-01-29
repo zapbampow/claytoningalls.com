@@ -120,7 +120,6 @@
 .blog-layout {
 
     blockquote,
-    table,
     p:has(img) {
         grid-column: popout;
     }
@@ -182,3 +181,21 @@ p:has(img) {
         margin-block-start: 1em;
     }
 }
+
+
+.blog-layout table {
+    background: #24292e;
+}
+.blog-layout th, .blog-layout td {
+    padding-inline: 2rem;
+    text-align: left;
+  }
+
+.blog-layout th:first-child {
+    margin-top: 2rem;
+}
+.blog-layout td:last-child {
+    margin-bottom: 2rem;
+}
+
+
