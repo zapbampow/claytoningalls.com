@@ -3,6 +3,7 @@ import type { GetStaticPaths } from "astro";
 import { getCollection, type CollectionEntry } from "astro:content";
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
+import dayjs from "@lib/extendedDayjs";
 
 export const getStaticPaths = (async () => {
   const posts = await getCollection("articles");
@@ -26,11 +27,18 @@ type Props = {
 };
 const { article } = Astro.props;
 const { Content } = await article.render();
+
+const sameUpdatePublishDates =
+  dayjs(article.data.publishedAt).format("YYYYMMDD") ===
+  dayjs(article.data.updatedAt).format("YYYYMMDD");
+const dateType = sameUpdatePublishDates ? "Published" : "Updated";
+const date = dayjs(article.data.updatedAt).utc().format("ll");
 ---
 
 <FullScreenLayout title={article.data.title || "Snippets"}>
   <BlogLayout>
     <h1>{article.data.title}</h1>
     <Content />
+    <p class="text-right text-base">{dateType} {date}</p>
   </BlogLayout>
 </FullScreenLayout>

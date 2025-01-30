@@ -5,7 +5,9 @@ const snippetCollection = defineCollection({
   schema: z.object({
     title: z.string(),
     publishedAt: z.date(),
+    updatedAt: z.date(),
     tags: z.array(z.string()),
+    status: z.enum(["draft", "published"]),
   }),
 });
 
@@ -24,6 +26,7 @@ const articlesCollection = defineCollection({
       })
       .optional(),
     tags: z.array(z.string()),
+    status: z.enum(["draft", "published"]),
   }),
 });
 
@@ -40,6 +43,7 @@ export const UnsocialSchema = z.object({
       alt: z.string(),
     })
     .optional(),
+  status: z.enum(["draft", "published"]),
 });
 
 const unsocialCollection = defineCollection({

@@ -3,13 +3,14 @@ import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import { getCollection } from "astro:content";
 
 const posts = await getCollection("articles");
+const publishedPosts = posts.filter((post) => post.data.status === "published");
 const pageTitle = "My Astro Learning Blog";
 ---
 
 <FullScreenLayout title={pageTitle}>
   <ul>
     {
-      posts.map((post) => (
+      publishedPosts.map((post) => (
         <li>
           <a href={`/articles/${post.slug}`}>
             <h2>{post.data.title}</h2>

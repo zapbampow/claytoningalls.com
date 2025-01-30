@@ -4,6 +4,7 @@ updatedAt: 2025-01-22
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
+status: "published"
 ---
 
 ## Find Stuff

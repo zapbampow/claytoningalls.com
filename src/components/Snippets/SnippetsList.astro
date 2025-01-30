@@ -3,10 +3,13 @@ import { getCollection } from "astro:content";
 import Snippet from "./Snippet.astro";
 
 const snippets = await getCollection("snippets");
+const publishedSnippets = snippets.filter(
+  (snippet) => snippet.data.status === "published"
+);
 ---
 
 <ul class="snippets-list">
-  {snippets.map((snippet) => <Snippet snippet={snippet} />)}
+  {publishedSnippets.map((snippet) => <Snippet snippet={snippet} />)}
 </ul>
 
 <style>

@@ -15,7 +15,14 @@ export const getStaticPaths = (async ({ paginate }) => {
   const articles = await getCollection("articles");
   const snippets = await getCollection("snippets");
 
-  const posts = [...articles, ...snippets].sort((a, b) => {
+  const publishedArticles = articles.filter(
+    (post) => post.data.status === "published"
+  );
+  const publishedSnippets = snippets.filter(
+    (post) => post.data.status === "published"
+  );
+
+  const posts = [...publishedArticles, ...publishedSnippets].sort((a, b) => {
     const dateA = dayjs(a.data.publishedAt).unix();
     const dateB = dayjs(b.data.publishedAt).unix();
     return dateB - dateA;

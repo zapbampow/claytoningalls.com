@@ -2,7 +2,7 @@ import type { Role } from "@components/about/Role.ts";
 
 export const volunteerRoles: Role[] = [
   {
-    title: "Developer",
+    title: "Volunteer",
     company: "Refcode",
     date: "2022 - Present",
     url: "https://www.refcode.org",
