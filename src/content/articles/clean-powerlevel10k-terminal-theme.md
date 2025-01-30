@@ -1,27 +1,31 @@
 ---
-publishedAt: 2025-01-22
-updatedAt: 2025-01-22
 title: My clean terminal theme with PowerLevel10K
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["terminal, zsh, bash"]
-status: "draft"
+status: "published"
+publishedAt: 2025-01-22
+updatedAt: 2025-01-22
 ---
 
 We use dev containers to develop at work. They are set up to automatically install zsh and the [PowerLevel10K](https://github.com/romkatv/powerlevel10k) theme.
 
-I like my command line interface to be as lean and compact as possible. On my personal machine I use [terminalparty](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#terminalparty) because it puts all the information on the right side of the terminal screen and just leaves the prompt on the left side. If you get to the metadata on the right side of the terminal, it just hides it to let you keep typing.
+I like my command line interface to be as clean as possible. On my personal machine I use [terminalparty](https://github.com/ohmyzsh/ohmyzsh/wiki/Themes#terminalparty) because it puts all the information on the right side of the terminal screen and just leaves the prompt on the left side. If you get to the metadata on the right side of the terminal, it just hides it to let you keep typing.
 
-However, when I remove PowerLevel10K and replace it with terminalparty in our dev container I get weird issues that make the terminal almost unusable. So I've spent some time figuring out the leanest and most compact terminal I can get with PowerLevel10K.
+![Terminal party](/images/terminalparty.webp)
+<span class="text-base">_terminalparty looks so clean_</span>
 
-There are 3 keys to getting it to feel really compact and clean.
+However, when I remove PowerLevel10K in our dev containers and replace it with terminalparty I get weird issues that make the terminal almost unusable. So I've spent some time figuring out the cleanest terminal I can get with PowerLevel10K.
 
-1. Always choose to show the least amount, except for the Prompt Height
-2. Choose "Two Lines" for Prompt Height
+There are 3 keys to getting it to feel the way I want.
+
+1. Always choose to show the least amount, except for the Prompt Height and Prompt Spacing
+2. Choose "Two Lines" for Prompt Height and "Sparse" for Prompt Spacing
 3. Enable the Transient Prompt
 
-Choosing two lines for the prompt height seems counterintuitive. However, it means that you are always typing on a completely clean line. I want to type from the left of the terminal, not 3/4 the way across because so much metadata is filling up the prompt line.
+Choosing two lines for the prompt height and sparce for prompt spacing seems counterintuitive. However, both make it so you will be typing on a new clean line that is clearly separated from any previous outputs. All the other settings remove spacing unnecessary spacing from the screen. What is left is the ability to type from the clean line that starts as left as possible. Other setting may have you typing from the middle of the screen because there is so much extra information added to the start of the prompt.
 
-The transient prompt cleans up the history and makes it nice and compact too. This is less important to me, but I do appreciate it.
+![Powerlevel 10K](/images/p10.webp)
+<span class="text-base">_This is the closest I can get to my terminalparty setup. I may even grow to prefer it._</span>
 
 Here is how I answer the configuration options when going through setup.
 
@@ -35,7 +39,7 @@ Here is how I answer the configuration options when going through setup.
 | Prompt Connection         | (1) Disconnected          |
 | Prompt Frame              | (2) Left                  |
 | Frame Color               | (1) Lightest              |
-| Prompt Spacing            | (1) Compact               |
+| Prompt Spacing            | (1) Sparse                |
 | Prompt Flow               | (1) Concise               |
 | Enable Transient Prompt   | (y) Yes                   |
 | Instant Prompt Mode       | (1) Verbose (recommended) |
