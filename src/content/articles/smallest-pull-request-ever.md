@@ -3,7 +3,7 @@ publishedAt: 2025-01-23
 updatedAt: 2025-01-23
 title: The smallest pull request ever
 description: I got a PR approved for Deno's JSR, sort of
-tags: ["git, github, deno, jsr"]
+tags: ["git", "github", "deno", "jsr"]
 status: "published"
 ---
 

@@ -1,7 +1,7 @@
 ---
 title: My clean terminal theme with PowerLevel10K
 description: A bunch of git commands that I return to, but don't always remember
-tags: ["terminal, zsh, bash"]
+tags: ["terminal", "zsh", "bash"]
 status: "published"
 publishedAt: 2025-01-22
 updatedAt: 2025-01-22
