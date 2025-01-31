@@ -12,14 +12,16 @@ import SimplePagination from "@components/navigation/SimplePagination.astro";
 import "@styles/blogList.css";
 
 export const getStaticPaths = (async ({ paginate }) => {
+  const isDev = import.meta.env.DEV || undefined;
+  console.log("isDev", isDev);
   const articles = await getCollection("articles");
   const snippets = await getCollection("snippets");
 
-  const publishedArticles = articles.filter(
-    (post) => post.data.status === "published"
+  const publishedArticles = articles.filter((post) =>
+    isDev ? true : post.data.status === "published"
   );
-  const publishedSnippets = snippets.filter(
-    (post) => post.data.status === "published"
+  const publishedSnippets = snippets.filter((post) =>
+    isDev ? true : post.data.status === "published"
   );
 
   const posts = [...publishedArticles, ...publishedSnippets].sort((a, b) => {
@@ -46,6 +48,9 @@ const pageTitle = "Blog";
               href={`/${post.collection}/${post.slug}`}
               class="flex flex-col h-full"
             >
+              {post.data.status === "draft" && (
+                <p class="uppercase font-bold">(Draft)</p>
+              )}
               <p class="post-type">
                 {singularize(post.collection).toUpperCase()}
               </p>

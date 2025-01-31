@@ -37,7 +37,14 @@ const date = dayjs(article.data.updatedAt).utc().format("ll");
 
 <FullScreenLayout title={article.data.title || "Snippets"}>
   <BlogLayout>
-    <h1>{article.data.title}</h1>
+    <h1>
+      {article.data.title}
+      {
+        article.data.status === "draft" && (
+          <span class="uppercase text-sm">(draft) </span>
+        )
+      }
+    </h1>
     <Content />
     <p class="text-right text-base">{dateType} {date}</p>
   </BlogLayout>

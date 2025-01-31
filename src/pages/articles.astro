@@ -2,8 +2,12 @@
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import { getCollection } from "astro:content";
 
+const isDev = import.meta.env.DEV;
+
 const posts = await getCollection("articles");
-const publishedPosts = posts.filter((post) => post.data.status === "published");
+const publishedPosts = posts.filter((post) =>
+  isDev ? true : post.data.status === "published"
+);
 const pageTitle = "My Astro Learning Blog";
 ---
 
