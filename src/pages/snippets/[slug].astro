@@ -4,11 +4,10 @@ import { getCollection, type CollectionEntry } from "astro:content";
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import dayjs from "@lib/extendedDayjs";
-import type { utc } from "dayjs";
 
 export const getStaticPaths = (async () => {
   const snippets = await getCollection("snippets");
-  console.log(snippets);
+
   return snippets.map((snippet: CollectionEntry<"snippets">) => ({
     params: {
       slug: snippet.slug,
@@ -26,8 +25,6 @@ type Props = {
 };
 const { snippet } = Astro.props;
 const { Content } = await snippet.render();
-
-console.log(snippet.data);
 
 const sameUpdatePublishDates =
   dayjs(snippet.data.publishedAt).format("YYYYMMDD") ===
