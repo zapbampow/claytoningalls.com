@@ -5,6 +5,9 @@ BUILD_DESTINATION="/var/www/claytoningalls.com"
 OLD_BUILD="/home/clayton/claytoningalls.com/.build/oldBuild"
 DIST_DIR="/home/clayton/claytoningalls.com/dist"
 
+# Run build
+astro check && astro build
+
 # Remove and recreate oldBuild directory
 rm -rf "$OLD_BUILD"
 mkdir -p "$OLD_BUILD"
@@ -17,8 +20,6 @@ if [ -d "$BUILD_DESTINATION" ] && [ "$(ls -A $BUILD_DESTINATION 2>/dev/null)" ];
     cp -r "$BUILD_DESTINATION"/* "$OLD_BUILD"
 fi
 
-# Run build
-astro check && astro build
 
 # Ensure viteDestination exists and copy dist contents to it
 mkdir -p "$BUILD_DESTINATION"
