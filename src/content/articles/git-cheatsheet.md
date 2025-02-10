@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-01-22
+updatedAt: 2025-02-10
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -117,6 +117,14 @@ some-other-branch-name
 
 If the branch you are wondering about is in the list, then it has been merged into the current branch.
 
+## Go places
+
+### Go to most recent branch
+
+```sh
+git checkout -
+```
+
 ## Undoing Work
 
 ### Discard unstaged changes in a file:
@@ -160,6 +168,18 @@ The `-r` option causes the removal of all files under your directory.
 The `--cached` option causes the files to only be removed from git's index, not your working copy. By default `git rm <file>` would delete `<file>`.
 
 [source](https://stackoverflow.com/a/1330097/9301652)
+
+### Reset local branch to contents on remote
+
+```sh
+git fetch origin
+
+# replace my-branch-name with the contents at origin
+git reset --hard origin/my-branch-name
+
+# remove untracked files and directories (probably optional, but I wanted to be completely reset)
+git clean -fd
+```
 
 ## Configuration
 
