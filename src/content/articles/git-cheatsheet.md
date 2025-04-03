@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-02-10
+updatedAt: 2025-04-03
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -123,6 +123,15 @@ If the branch you are wondering about is in the list, then it has been merged in
 
 ```sh
 git checkout -
+```
+
+## Get stuff
+
+### Get changes to a branch while on a different branch
+I'm on `feature-branch-1` and want to merge `prod` into my branch. But I don't want to switch to prod and pull changes.
+
+```sh
+git fetch origin prod
 ```
 
 ## Undoing Work
