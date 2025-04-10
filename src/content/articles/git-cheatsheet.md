@@ -1,7 +1,7 @@
 ---
 publishedAt: 2024-09-25
 updatedAt: 2025-04-09
-title: Git snippets
+title: Git Cheatsheet
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
 status: "published"
