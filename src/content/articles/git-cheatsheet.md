@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-04-03
+updatedAt: 2025-04-09
 title: Git snippets
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -63,7 +63,7 @@ Same as above, but includes remote branches as well and ignores case distinction
 git branch --all | grep -i PARTIAL_NAME
 ```
 
-### Show the current branch name
+## Show the current branch name
 
 ```sh
 git branch --show-current
@@ -71,6 +71,21 @@ git branch --show-current
 
 Why would I want this? My terminal shows me the branch name, as does VS Code.
 Sometimes the branch name is so long that it is truncated and I just can't remember it. It also makes it super easy to copy the branch name
+
+## Show list of recent branches worked on
+
+```sh
+git branch --sort=-committerdate
+```
+
+I can't always remember the names of all my branches, especially when I'm working on several features or bugs at the same time. This lists branches based on the most recent commits. So as long as you have made commits, this will help you find a recent branch you worked on.
+
+## Show list of branches that a commit is on
+```sh
+git branch --contains $hash
+```
+
+This is good for quickly checking if a commit you are looking at is on a particular branch. 
 
 ### Check whether one branch has been merged into another branch
 
