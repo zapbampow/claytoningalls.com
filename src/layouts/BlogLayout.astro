@@ -1,5 +1,6 @@
 ---
 import "@styles/blogLayout.css";
+import { calcLength } from "framer-motion";
 const { className, defaultGridColumn } = Astro.props;
 // defaultGridColumn: "content" | "popout" | "inset-content" | "full" - default: "content"
 ---
@@ -7,3 +8,28 @@ const { className, defaultGridColumn } = Astro.props;
 <div class:list={["blog-layout", className, defaultGridColumn]}>
   <slot />
 </div>
+
+<script>
+  // add copy button to code blocks
+  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+  codeBlocks.forEach((block) => {
+    const codeText = block.querySelector("code")?.innerText;
+    console.log("code", codeText);
+
+    if (codeText) {
+      const copyButton = document.createElement("button");
+      copyButton.innerText = "Copy";
+      copyButton.classList.add("copy-button");
+      copyButton.addEventListener("click", () => {
+        navigator.clipboard.writeText(codeText).then(() => {
+          copyButton.innerText = "Copied!";
+          setTimeout(() => {
+            copyButton.innerText = "Copy";
+          }, 2000);
+        });
+      });
+      block.appendChild(copyButton);
+    }
+  });
+</script>
