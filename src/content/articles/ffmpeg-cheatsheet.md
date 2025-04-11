@@ -1,6 +1,6 @@
 ---
 title: ffmpeg cheatsheet
-description: I don't use ffmpeg enough to ever remember the syntax
+description: I don't use ffmpeg enough to remember, well, anything really
 tags: ["ffmpeg", "terminal", "command line"]
 status: "published"
 publishedAt: 2025-04-11
