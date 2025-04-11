@@ -3,8 +3,8 @@ title: ffmpeg cheatsheet
 description: I don't use ffmpeg enough to ever remember the syntax
 tags: ["ffmpeg", "terminal", "command line"]
 status: "published"
-publishedAt: 2025-01-30
-updatedAt: 2025-01-30
+publishedAt: 2025-04-11
+updatedAt: 2025-04-11
 ---
 
 ## Convert an image from one format to another
