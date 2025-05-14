@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-04-09
+updatedAt: 2025-05-14
 title: Git Cheatsheet
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -203,6 +203,28 @@ git reset --hard origin/my-branch-name
 
 # remove untracked files and directories (probably optional, but I wanted to be completely reset)
 git clean -fd
+```
+
+### Delete local branch and refetch from remote
+Maybe you are seeing errors like these when you try to pull or push:
+- `error: object file "path" is empty`  
+- `fatal: loose object SHA "path" is corrupt`
+
+I've found the best way to handle those are copy the SHA of my committed changes, delete my local branch, refetch the branch from remote, and cherry-pick my changes back into the branch.
+
+```sh
+# delete locally if all changes are merged
+git branch -d branch_name 
+
+# delete locally even if all changes are not merged
+git branch -D branch_name 
+
+# fetch branch
+git fetch origin branch_name
+
+# bonus: return committed changes that were lost from git branch -D
+git cherry-pick SHA
+
 ```
 
 ## Configuration
