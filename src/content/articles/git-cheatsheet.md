@@ -1,6 +1,6 @@
 ---
 publishedAt: 2024-09-25
-updatedAt: 2025-05-14
+updatedAt: 2025-05-16
 title: Git Cheatsheet
 description: A bunch of git commands that I return to, but don't always remember
 tags: ["git"]
@@ -225,6 +225,18 @@ git fetch origin branch_name
 # bonus: return committed changes that were lost from git branch -D
 git cherry-pick SHA
 
+```
+
+### Delete empty git objects
+```sh
+find .git/objects/ -type f -empty -delete
+```
+
+This is another way to handle the situation where you have empty git objects that are giving you errors like the following.
+
+```sh
+error: object file .git/objects/31/65329bb680e30595f242b7c4d8406ca63asdf0 is empty
+fatal: loose object 65329bb680e30595f242b7c4d8406ca63asdf0 (stored in .git/objects/31/65329bb680e30595f242b7c4d8406ca63asdf0) is corrupt
 ```
 
 ## Configuration
