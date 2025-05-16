@@ -1,5 +1,5 @@
 ---
-title: "The Cypress Variable Hack"
+title: "How to treat info in Cypress like a variable"
 publishedAt: 2025-05-16
 updatedAt: 2025-05-16
 tags: ["snippet", "cypress", "testing"]
