@@ -8,13 +8,13 @@ type Props = {
 const {
   snippet: {
     data: { title, publishedAt, tags },
-    slug,
+    id,
   },
 } = Astro.props;
 const date = new Date(publishedAt);
 ---
 
-<a class="snippet" href={`/snippets/${slug}`}>
+<a class="snippet" href={`/snippets/${id}`}>
   <h2>{title}</h2>
   <p>{date.toLocaleDateString()}</p>
   <ul>

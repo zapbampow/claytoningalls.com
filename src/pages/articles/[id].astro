@@ -1,6 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
-import { getCollection, type CollectionEntry } from "astro:content";
+import { render, getCollection, type CollectionEntry } from "astro:content";
 import FullScreenLayout from "@layouts/FullScreenLayout.astro";
 import BlogLayout from "@layouts/BlogLayout.astro";
 import dayjs from "@lib/extendedDayjs";
@@ -9,9 +9,10 @@ export const getStaticPaths = (async () => {
   const posts = await getCollection("articles");
 
   return posts.map((article: CollectionEntry<"articles">) => {
+    console.log("article", article);
     const pathData = {
       params: {
-        slug: article.slug,
+        id: article.id,
       },
       props: {
         article,
@@ -26,7 +27,7 @@ type Props = {
   article: CollectionEntry<"articles">;
 };
 const { article } = Astro.props;
-const { Content } = await article.render();
+const { Content } = await render(article);
 
 const sameUpdatePublishDates =
   dayjs(article.data.publishedAt).format("YYYYMMDD") ===

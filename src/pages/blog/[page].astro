@@ -45,7 +45,7 @@ const pageTitle = "Blog";
         page.data.map((post) => (
           <li>
             <a
-              href={`/${post.collection}/${post.slug}`}
+              href={`/${post.collection}/${post.id}`}
               class="flex flex-col h-full"
             >
               {post.data.status === "draft" && (

@@ -10,7 +10,7 @@ const { post, isPreview } = props;
 const type = post.data.type;
 const data = post.data;
 const body = post.body;
-const slug = post.slug;
+const id = post.id;
 ---
 
 {
@@ -27,7 +27,7 @@ const slug = post.slug;
     </Photo>
   )
 }
-{type === "article" && isPreview && <ArticlePreview data={data} slug={slug} />}
+{type === "article" && isPreview && <ArticlePreview data={data} id={id} />}
 {
   type === "article" && !isPreview && (
     <Article data={data}>

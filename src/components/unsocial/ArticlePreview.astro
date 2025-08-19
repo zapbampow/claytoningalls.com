@@ -1,12 +1,12 @@
 ---
-import { UnsocialSchema } from "@content/config.ts";
+import { UnsocialSchema } from "@content.config";
 import { z } from "astro:content";
 import dayjs from "dayjs";
 
 type Data = z.infer<typeof UnsocialSchema>;
-type Props = { data: Data; slug: string };
+type Props = { data: Data; id: string };
 
-const { data, slug } = Astro.props;
+const { data, id } = Astro.props;
 const title = data.title,
   publishedAt = data.publishedAt,
   image = data.image,
@@ -32,6 +32,6 @@ const date = dayjs(publishedAt).format("MMM D, YYYY");
       )
     }
     <p class="article-description">{description}</p>
-    <a class="read-btn" href={`/unsocial/${slug}`}>Read</a>
+    <a class="read-btn" href={`/unsocial/${id}`}>Read</a>
   </div>
 </article>

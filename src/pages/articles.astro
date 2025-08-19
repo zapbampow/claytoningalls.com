@@ -16,7 +16,7 @@ const pageTitle = "My Astro Learning Blog";
     {
       publishedPosts.map((post) => (
         <li>
-          <a href={`/articles/${post.slug}`}>
+          <a href={`/articles/${post.id}`}>
             <h2>{post.data.title}</h2>
           </a>
         </li>
