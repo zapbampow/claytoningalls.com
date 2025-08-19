@@ -11,6 +11,6 @@ export default defineConfig({
   },
   integrations: [icon(), tailwind(), pagefind()],
   experimental: {
-    rewriting: true,
+    // rewriting: true,
   },
 });
