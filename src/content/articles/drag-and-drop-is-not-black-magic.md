@@ -46,33 +46,45 @@ My goal was to completely dispense with the idea of dragging and dropping anythi
 - add locations where the item can move to
 - click the location where you want to move the item
 
-## Step 1: A little display
-Step 1 was to simply display the list I had properly. The data looked included the parent/child relationships and the level, but not the visual tier data.
+This all turned out to be the foundation of a drag and drop UI that I was pretty happy with.
+
+### Step 1: A little display
+Step 1 was to simply display the list I had properly. Although the complication of my project had came from the nesting we needed, for the rest of this post I'm going to ignore that part of it. Needing to deal with it helped push me to a simplified solution, which I'm going to share here. The nesting ended up just being implementation details. 
 
 ```js
-[
+const data = [
     {
         ID: 1,
         name: "Item 1",
-        parentID: 0,
-        level: 1
+        order: 0
     },
     {
         ID: 2,
         name: "Item 2",
-        parentID: 1,
-        level: 2
+        order: 1
     },
     {
         ID: 3,
         name: "Item 3",
-        parentID: 0,
-        level: 2
+        order: 2
     },
 ]
 ```
 
-This was the easiest part. Does the item have a parent? What is the level? That was enough information to set the left margin and get the nested tree look we were looking for.
+Simply displaying is the easy part.
+
+<SimpleDisplay />
+
+### Step 2: Where can each item move?
+<DisplayWithDropLocations />
 
 ### Step 3: Place a reordered item
-<Button />
+<ReorderableList />
+
+### Step 4: Make it drag and drop
+<DragNDrop />
+
+## Not perfect
+The biggest problem is that this solution doesn't work on touch devices. It is a CSS solution based on hover states, which touch events don't trigger. 
+
+A more robust solution would be tracking the location of a touch event and compare whether it was on the same part of the screen as a drop location. But for a first not even wanting a drag and drop solution, I was pretty happy with the results.

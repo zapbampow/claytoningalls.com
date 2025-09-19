@@ -2,7 +2,7 @@ import { defineCollection, z } from "astro:content";
 import { glob } from "astro/loaders"
 
 const snippetCollection = defineCollection({
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/snippets" }),
+  loader: glob({ pattern: "**/*.{md}", base: "src/content/snippets" }),
   schema: z.object({
     title: z.string(),
     publishedAt: z.date(),
@@ -14,7 +14,7 @@ const snippetCollection = defineCollection({
 
 const articlesCollection = defineCollection({
   // type: "content",
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/articles" }),
+  loader: glob({ pattern: "**/*.{md}", base: "src/content/articles" }),
   schema: z.object({
     title: z.string(),
     publishedAt: z.date(),
@@ -50,7 +50,7 @@ export const UnsocialSchema = z.object({
 
 const unsocialCollection = defineCollection({
   // type: "content",
-  loader: glob({ pattern: "**/*.{md,mdx}", base: "src/content/unsocial" }),
+  loader: glob({ pattern: "**/*.{md}", base: "src/content/unsocial" }),
   schema: UnsocialSchema,
 });
 
