@@ -13,7 +13,6 @@ import "@styles/blogList.css";
 
 export const getStaticPaths = (async ({ paginate }) => {
   const isDev = import.meta.env.DEV || undefined;
-  console.log("isDev", isDev);
   const articles = await getCollection("articles");
   const snippets = await getCollection("snippets");
 

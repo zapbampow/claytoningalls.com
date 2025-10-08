@@ -9,7 +9,6 @@ export const getStaticPaths = (async () => {
   const posts = await getCollection("articles");
 
   return posts.map((article: CollectionEntry<"articles">) => {
-    console.log("article", article);
     const pathData = {
       params: {
         id: article.id,
