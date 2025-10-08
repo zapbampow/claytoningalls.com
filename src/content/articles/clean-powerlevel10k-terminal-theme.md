@@ -1,6 +1,6 @@
 ---
 title: My clean terminal theme with PowerLevel10K
-description: A bunch of git commands that I return to, but don't always remember
+description: We use dev containers to develop at work. They are set up to automatically install zsh and the PowerLevel10K theme. Although it isn't my preferred theme (terminalparty), it is customizable enough to be almost as clean.
 tags: ["terminal", "zsh", "bash"]
 status: "published"
 publishedAt: 2025-01-22
