@@ -7,6 +7,10 @@ tags: ["git"]
 status: "published"
 ---
 
+## My favorite resources
+- [Oh shit, git!?!](https://ohshitgit.com/)
+- [On undoing, fixing, or removing commits in git](https://sethrobertson.github.io/GitFixUm/fixup.html)
+
 ## Find Stuff
 
 ### Show a specific commit
